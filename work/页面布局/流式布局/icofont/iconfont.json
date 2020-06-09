@@ -1,0 +1,51 @@
+{
+  "id": "1852435",
+  "name": "resume",
+  "font_family": "resumeICON",
+  "css_prefix_text": "icon-",
+  "description": "简历ico",
+  "glyphs": [
+    {
+      "icon_id": "985809",
+      "name": "性别",
+      "font_class": "nex",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "1928511",
+      "name": "微信",
+      "font_class": "x",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
+      "icon_id": "3326217",
+      "name": "日历",
+      "font_class": "r",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "11643091",
+      "name": "艾特",
+      "font_class": "aite",
+      "unicode": "e6be",
+      "unicode_decimal": 59070
+    },
+    {
+      "icon_id": "13481739",
+      "name": "电 话",
+      "font_class": "t",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "4385812",
+      "name": "姓名",
+      "font_class": "name",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    }
+  ]
+}

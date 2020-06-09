@@ -12,11 +12,12 @@
 
 ![logo](_media/icon.svg)
 
-# hexo-theme-dearmsdan <small>2.0</small>
+# web 前端 <small>0.0.1</small>
 
-> Dearmsdan 主题 宝钻蓝色，给你一种空灵的感觉.
+> 记录学习.
 
 -  Copyright © 2020-present
 
-[GitHub](https://github.com/ZHD99/hexo-theme-dearmsdan)
-[快速开始](#hexo-theme-Dearmsdan)
+
+[快速开始](#概述)
+
