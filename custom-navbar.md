@@ -1,4 +1,8 @@
-# Custom navbar
+# 基本结构
+
+> EJS 是一套简单的模板语言，帮你利用普通的 JavaScript 代码生成 HTML 页面。EJS 没有如何组织内容的教条；也没有再造一套迭代和控制流语法；有的只是普通的 JavaScript 代码而已。
+
+官方是这么说的，那么就有HTML结构标签 head、body
 
 ## HTML
 

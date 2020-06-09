@@ -1,94 +1,75 @@
-# Quick start
+<div align="right">
+  Language:
+  中文
+</div>
+<p align="center">
+  </p>
+<p align="center">
+  </p>
 
-It is recommended to install `docsify-cli` globally, which helps initializing and previewing the website locally.
+<h1 align="center">HEXO 主题 宝钻蓝色 </h1>
+<h3 align="center">给你一种空灵的感觉 </h3><br/>
+<p align="center">
+   <a href="https://nodejs.org"><img src="/_images/_ico/node.svg"></a>
+  <a href="https://hexo.io"><img src="/_images/_ico/hexo.svg"></a>
+  <a href="https://codeload.github.com/ZHD99/hexo-theme-dearmsdan/zip/master"><img alt="Download" src="/_images/_ico/download.svg"/></a>
+  <a><img alt="Author" src="/_images/_ico/author.svg"/></a>
+  <a><img src="/_images/_ico/mit.svg"></a> <br/>
+</p>
 
-```bash
-npm i docsify-cli -g
+<br/>
+
+<a id='docsify'>展示</a>： [hexo-theme-dearmsdan](https://www.dearmsdan.com)
+
+## 安装
+
+dearmsdan 主题使用`ejs`模板引擎开发
+
+
+### 安装方法一：
+
+1. 拷贝主题到`themes`目录
+
+```
+cd themes
+git clone https://github.com/ZHD99/hexo-theme-dearmsdan.git dearmsdan
 ```
 
-## Initialize
+2. 修改主程序的`_config.yml`文件
 
-If you want to write the documentation in the `./docs` subdirectory, you can use the `init` command.
-
-```bash
-docsify init ./docs
+```
+theme: dearmsdan
 ```
 
-## Writing content
+就可以运行了，`hexo s`
 
-After the `init` is complete, you can see the file list in the `./docs` subdirectory.
+#### 安装方法二：
 
-* `index.html` as the entry file
-* `README.md` as the home page
-* `.nojekyll` prevents GitHub Pages from ignoring files that begin with an underscore
+如果不会第一种可以选择小白安装方法
 
-You can easily update the documentation in `./docs/README.md`, of course you can add [more pages](more-pages.md).
+<details>
+<summary>展开查看</summary>
+<pre><code>
+如果gif只能显示一部分，可以点链接看安装方法
+<a href="http://link.dearmsdan.com/anz.gif">[安装方法gif]</a>
+<img src="http://link.dearmsdan.com/anz.gif" />
+</code></pre>
+</details>
 
-## Preview your site
+## 更新
 
-Run the local server with `docsify serve`. You can preview your site in your browser on `http://localhost:3000`.
 
-```bash
-docsify serve docs
+###### 更新方法一：
+```
+cd themes/dearmsdan
+git pull
 ```
 
-?> For more use cases of `docsify-cli`, head over to the [docsify-cli documentation](https://github.com/docsifyjs/docsify-cli).
+###### 更新方法二：
 
-## Manual initialization
+小白更新方法
 
-If you don't like `npm` or have trouble installing the tool, you can manually create `index.html`:
-
-```html
-<!-- index.html -->
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      //...
-    }
-  </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-</body>
-</html>
-```
-
-If you installed python on your system, you can easily use it to run a static server to preview your site.
-
-```bash
-cd docs && python -m SimpleHTTPServer 3000
-```
-
-## Loading dialog
-
-If you want, you can show a loading dialog before docsify starts to render your documentation:
-
-```html
-  <!-- index.html -->
-
-  <div id="app">Please wait...</div>
-```
-
-You should set the `data-app` attribute if you changed `el`:
-
-```html
-  <!-- index.html -->
-
-  <div data-app id="main">Please wait...</div>
-
-  <script>
-    window.$docsify = {
-      el: '#main'
-    }
-  </script>
-```
-
-Compare [el configuration](configuration.md#el).
+- 先把主题配置文件备份到桌面(themes/dearmsdan/_config.yml)
+- 与小白安装方法一样，从git上弄下最新版本
+- 解压最新版覆盖原来的(themes/dearmsdan) 
+- 通过备份的配置文件，对比更新后的配置文件修改

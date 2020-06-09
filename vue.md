@@ -1,3 +1,8 @@
+<style>
+</style>
+
+
+
 # Compatible with Vue
 
 You can write Vue components directly in the Markdown file, and it will be parsed. You can use this feature to write vue demo and documentation together.
@@ -24,7 +29,7 @@ Then you can immediately write Vue code at Markdown file. `new Vue({ el: '#main'
 
 `v-for` usage.
 
-```html
+​```html
 <ul>
   <li v-for="i in 10">{{ i }}</li>
 </ul>
@@ -39,7 +44,7 @@ You can manually initialize a Vue instance.
 
 *README.md*
 
-```markdown
+​```markdown
 # Vue demo
 
 <div id="main">hello {{ msg }}</div>

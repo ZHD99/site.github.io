@@ -1,162 +1,114 @@
-# Doc helper
+#  hexo 官方文档  小手册
 
-docsify extends Markdown syntax to make your documents more readable.
 
-> Note:  For the special code syntax cases, you'd better put them within a code backticks to avoid any conflicting from configurations or emojis. 
 
-## important content
+## generate （生成静态文件 在public 下
 
-Important content like:
-
-```markdown
-!> **Time** is money, my friend!
+```
+$ hexo generate
 ```
 
-is rendered as:
+生成静态文件。
 
-!> **Time** is money, my friend!
+| 选项                  | 描述                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| `-d`, `--deploy`      | 文件生成后立即部署网站                                       |
+| `-w`, `--watch`       | 监视文件变动                                                 |
+| `-b`, `--bail`        | 生成过程中如果发生任何未处理的异常则抛出异常                 |
+| `-f`, `--force`       | 强制重新生成文件 Hexo 引入了差分机制，如果 `public` 目录存在，那么 `hexo g` 只会重新生成改动的文件。 使用该参数的效果接近 `hexo clean && hexo generate` |
+| `-c`, `--concurrency` | 最大同时生成文件的数量，默认无限制                           |
 
-## General tips
+该命令可以简写为
 
-General tips like:
-
-```markdown
-?> _TODO_ unit test
+```
+$ hexo g
 ```
 
-are rendered as:
+## server （ 启动 hexo 页面 ， 可以 localhost:4000 查看
 
-?> _TODO_ unit test
-
-## Ignore to compile link
-
-Some time we will put some other relative path to the link, you have to need to tell docsify you don't need to compile this link. For example
-
-```md
-[link](/demo/)
+```
+$ hexo server
 ```
 
-It will be compiled to `<a href="/#/demo/">link</a>` and will be loaded `/demo/README.md`. Maybe you want to jump to `/demo/index.html`.
+启动服务器。默认情况下，访问网址为： `http://localhost:4000/`。
 
-Now you can do that
+| 选项             | 描述                           |
+| :--------------- | :----------------------------- |
+| `-p`, `--port`   | 重设端口                       |
+| `-s`, `--static` | 只使用静态文件                 |
+| `-l`, `--log`    | 启动日记记录，使用覆盖记录格式 |
 
-```md
-[link](/demo/ ':ignore')
+
+
+## deploy（ 部署 在远程服务器上，或者部署在其他平台
+
+```
+$ hexo deploy
 ```
 
-You will get `<a href="/demo/">link</a>`html. Do not worry, you can still set title for link.
+部署网站。
 
-```md
-[link](/demo/ ':ignore title')
+| 参数               | 描述                     |
+| :----------------- | :----------------------- |
+| `-g`, `--generate` | 部署之前预先生成静态文件 |
 
-<a href="/demo/" title="title">link</a>
+该命令可以简写为：
+
+```
+$ hexo d
 ```
 
-## Set target attribute for link
 
-```md
-[link](/demo ':target=_blank')
-[link](/demo2 ':target=_self')
+
+## clean （ 清理 public 文件下的静态文件，注意！每次server前清理，极力提醒自己，防止错误寻找很久的问题
+
+```
+$ hexo clean
 ```
 
-## Disable link
+清除缓存文件 (`db.json`) 和已生成的静态文件 (`public`)。
 
-```md
-[link](/demo ':disabled')
+在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。
+
+
+
+## version
+
+```
+$ hexo version
 ```
 
-## Github Task Lists
+显示 Hexo 版本。
 
-```md
-- [ ] foo
-- bar
-- [x] baz
-- [] bam <~ not working
-  - [ ] bim
-  - [ ] lim
+
+
+
+
+## 部分插件用法
+
+ 
+
+## gulp 的使用 （一）
+
+
+### gulp 压缩
+```
+hexo g
+gulp  // 执行压缩，两条命令可以合并：hexo g && gulp
 ```
 
-- [ ] foo
-- bar
-- [x] baz
-- [] bam <~ not working
-  - [ ] bim
-  - [ ] lim
+只需要每次在执行 generate 命令后执行 gulp 就可以实现对静态资源的压缩
 
-## Image
+### 执行部署命令
 
-### Resizing
-
-```md
-![logo](https://docsify.js.org/_media/icon.svg ':size=WIDTHxHEIGHT')
-![logo](https://docsify.js.org/_media/icon.svg ':size=50x100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=100')
-
-<!-- Support percentage -->
-
-![logo](https://docsify.js.org/_media/icon.svg ':size=10%')
+```
+hexo d
 ```
 
-![logo](https://docsify.js.org/_media/icon.svg ':size=50x100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=10%')
 
-### Customise class
 
-```md
-![logo](https://docsify.js.org/_media/icon.svg ':class=someCssClass')
+## gulp 的使用 （二）
+```
+gulp build
 ```
 
-### Customise ID
-
-```md
-![logo](https://docsify.js.org/_media/icon.svg ':id=someCssId')
-```
-
-## Customise ID for headings
-
-```md
-### 你好，世界！ :id=hello-world
-```
-
-## Markdown in html tag
-
-You need to insert a space between the html and markdown content.
-This is useful for rendering markdown content in the details element.
-
-```markdown
-<details>
-<summary>Self-assessment (Click to expand)</summary>
-
-- Abc
-- Abc
-
-</details>
-```
-
-<details>
-<summary>Self-assessment (Click to expand)</summary>
-
-- Abc
-- Abc
-
-</details>
-
-Or markdown content can be wrapped in html tag.
-
-```markdown
-<div style='color: red'>
-
-- listitem
-- listitem
-- listitem
-
-</div>
-```
-
-<div style='color: red'>
-
-- Abc
-- Abc
-
-</div>

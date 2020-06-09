@@ -1,32 +1,38 @@
-## docsify
+## hexo-theme-Dearmsdan
 
-> A magical documentation site generator.
+> HEXO 主题 宝钻蓝色，给你一种空灵的感觉
 
-## What it is
+## 主题预览
 
-docsify generates your documentation website on the fly. Unlike GitBook, it does not generate static html files. Instead, it smartly loads and parses your Markdown files and displays them as a website. To start using it, all you need to do is create an `index.html` and [deploy it on GitHub Pages](deploy.md).
+![dear](_media/dearmsdan.png)
 
-See the [Quick start](quickstart.md) guide for more details.
+有关详细模块信息，请参阅指南。 [快速开始](quickstart.md) 
 
-## Features
 
-- No statically built html files
-- Simple and lightweight (~21kB gzipped)
-- Smart full-text search plugin
-- Multiple themes
-- Useful plugin API
-- Emoji support
-- Compatible with IE11
-- Support server-side rendering ([example](https://github.com/docsifyjs/docsify-ssr-demo))
 
-## Examples
+## 特征
 
-Check out the [Showcase](https://github.com/docsifyjs/awesome-docsify#showcase) to see docsify in use.
+- 默认开启Pjax
+- 全文搜索
+- 调试功能
+- 自定义作者
+- 自定义二级目录
+- 自定义社交按钮
+- 自定义音乐播放器
+- 自定义悬浮文章上变色
+- 自定义外部链接拦截提示
+- 支持 valine 评论系统
+- 支持config配置友情链接
+- 自定义背景设置、自定义作者、底部时间统计等等...
 
-## Donate
+# issues
 
-Please consider donating if you think docsify is helpful to you or that my work is valuable. I am happy if you can help me [buy a cup of coffee](https://github.com/QingWei-Li/donate). :heart:
+欢迎大家提交意见,如果大家需要其他插件或者功能支持，请发表 ([issues](https://github.com/ZHD99/hexo-theme-dearmsdan/issues))哦~
 
-## Community
+##  贡献
 
-Users and the development team are usually in the [Gitter chat room](https://gitter.im/docsifyjs/Lobby).
+很可怜，暂无
+
+## 许可证
+
+根据 MIT License 许可证开源。
