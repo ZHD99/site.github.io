@@ -652,3 +652,134 @@ RGB多了一个A（alpha）来表示透明度，
 – right：右对齐    
 – justify：两边对齐  
 – center：居中对齐  
+
+# 表格
+- 在Web的历史中，HTML的表格发挥了极大的作用。最
+初创建表格就是为了以表格的形式显示数据，后来表格
+变成了一个极受欢迎的布局工具。
+- 但是有了CSS以后，CSS在布局网页方面实际上会更出
+色，所以现在我们使用表格的作用只有一个，就是用来
+表示格式化的数据。
+- HTML中的表格可以很复杂，但是通常情况下我们不需
+要创建过于复杂的表格。
+
+### table、tr、th、td
+- 使用table标签创建一个表格。
+- tr表示表格中的一行。
+- tr中可以编写一个或多个th或td。
+- th表示表头。
+- td表示表格中的一个单元格。
+
+### caption、thead、tbody、tfoot
+- caption表示表格的标题。
+- thead表示表格的头部。
+- tbody表示表格的主体。
+- tfoot表示表格的底部。
+
+### 合并单元格
+合并单元格指将两个或两个以上的单元格  
+合并为一个单元格。  
+- 合并单元格可以通过在th或td中设置属性
+来完成。  
+- 横向合并    
+– colspan     
+- 纵向合并     
+– rowspan   
+
+### 表格的样式
+之前学习的很多属性都可以用来设置表格的样式，比如color可以用
+来设置文本的颜色。padding可以设置内容和表格边框的距离。
+- text-align：设置文本的水平对齐。
+- vertical-align：设置文本的垂直对齐。  
+– 可选值：top、baseline、middle、bottom  
+- border-spacing：边框间距
+- border-collapse：合并边框 
+– collapse：合并边框  
+– separate：不合并边框  
+
+# 表单
+
+- 现实生活中的表单是用来提交信息的，比
+如：办理银行卡填写的申请表、找工作填
+写的简历、入学时填写的个人信息表。这
+些都是表单的一种
+- 网页中的表单是用来向服务器提交信息的，
+我们最常用到的表单就是baidu的搜索框
+在搜索框填入关键字后，点击搜索按钮，关键字会提交到baidu的服务器，
+服务器根据用户输入的关键字进行检索，返回相应信息
+
+- 表单可以将用户填写的信息提交的服务器
+- 例子：
+```
+<form action="1.html" method="get">
+<input type="text" name="name"><br />
+<input type="password" name="pwd"><br />
+<input type="submit" value="提交">
+</form>
+```
+使用\<form\>标签来创建一个表单
+表单中必须要有两个属性**action**和**method**
+action表示提交表单到服务器中的地址
+method表示提交表单的方法
+
+### 表单项
+
+```
+文本框
+<input type="text" name="name">
+密码框
+<input type="password" name="pwd">
+多选框
+<input type="checkbox" name="sports">
+单选框
+<input type="radio" name="gender">
+提交按钮
+<input type="submit" value="提交">
+下拉列表
+<select>
+<option>北京</option>
+</select>
+```
+文本框
+<input type="text" name="name">
+密码框
+<input type="password" name="pwd">
+多选框
+<input type="checkbox" name="sports">
+单选框
+<input type="radio" name="gender">
+提交按钮
+<input type="submit" value="提交">
+下拉列表
+<select>
+<option>北京</option>
+</select>
+
+### input
+- input是我们使用的最多的表单项，它可以
+根据不同的type属性呈现不同的状态。  
+- type属性可选值：  
+– text：文本框  
+– password：密码框  
+– submit：提交按钮  
+– radio：单选按钮  
+– checkbox：多选框  
+– reset ：重置按钮  
+
+### select、option
+- select用于创建一个下拉列表。
+- option表示下拉列表中的列表项。
+- optgroup用于为列表项分组
+
+### textarea
+- textarea用来创建一个文本域，实际效果和
+文本框类似，只是可以输入多行数据  
+- 可用属性：  
+– cols：文本域的列数  
+– rows：文本域的行数  
+
+### fieldset、legend、label
+- **fieldset** 用来为表单项进行分组。
+- **legend** 用于指定每组的名字。
+- **label** 标签用来为表单项定义描述文字
+

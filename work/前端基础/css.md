@@ -528,6 +528,12 @@ bottom、left四个属性对元素进行定位。
 - 例如：
 `background: green url(1.jpg) no-repeat center center fixed;`
 
+### CSS Sprite
+- CSS Sprites 是一种网页图片应用处理方式。
+- 通过这种方式我们可以将网页中的零星图
+片集中放到一张大图上。
+- 这样一来，一次请求便可以同时加载多张
+图片，大大提高了图片的加载效率
 
 
 
