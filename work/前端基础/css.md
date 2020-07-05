@@ -473,6 +473,68 @@ bottom、left四个属性对元素进行定位。
 
 
 
+# 设置元素的背景
+
+### background-color
+
+- background-color属性用来为元素设置背
+  景颜色。
+- 需要指定一个颜色值，当指定了一个颜色
+  以后，整个元素的可见区域都会使用这个
+  颜色作为背景色。
+- 如果不设置背景颜色，元素默认背景颜色
+  为透明，实际上会显示父元素的背景颜色。
+
+### background-image
+- background-image可以为元素指定背景
+图片。
+- 和background-color类似，这不过这里使
+用的是一个图片作为背景。
+- 需要一个url地址作为参数，url地址需要指
+向一个外部图片的路径
+- 例如：`background-image: url(1.jpg)`
+
+### background-repeat
+- **background-repeat**用于控制背景图片的
+重复方式。
+- 如果只设置背景图片默认背景图片将会使
+用平铺的方式，可以通过该属性进行修改。
+- 可选值：  
+– repeat：默认值，图片左右上下平铺  
+– no-repeat：只显示图片一次，不会平铺  
+– repeat-x：沿x轴水平平铺一张图片  
+– repeat-y：沿y轴水平平铺一张图片  
+
+### background-position
+- background-position用来精确控制背景
+图片在元素中的位置。
+- 可以通过三种方式来确定图片在水平方向
+和垂直方向的起点。  
+– 关键字：top right bottom left center  
+– 百分比  
+– 数值  
+
+### background-attachment
+- background-attachment用来设置背景图
+片是否随页面滚动。
+- 可选值：    
+– scroll：随页面滚动  
+– fixed：不随页面滚动  
+
+### background 
+- background是背景的简写属性，通过这个
+属性可以一次性设置多个样式，而且样式
+的顺序没有要求。
+- 例如：
+`background: green url(1.jpg) no-repeat center center fixed;`
+
+
+
+
+
+
+
+
 
 
 
