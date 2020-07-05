@@ -43,7 +43,7 @@
   与自适应相反，页面分辨率设计多少决定载入速度
 - 4、 具体案例：
 
-[自适应布局demo](work/页面布局/自适应布局/responsive.md)
+[响应式布局demo](work/页面布局/响应式布局/responsive.md)
 
 ## *流式布局(Flow layout)*
 
@@ -69,7 +69,7 @@
   设为flex布局后，子元素的float、clear、vertical-align将失效   
   对于一些特殊布局（垂直居中）和网格式布局（几行几列）不易实现
 - 4、 具体案例：  
-  [流式布局demo](work/页面布局/弹性布局/flex.md) flex flow 
+  [弹性布局demo](work/页面布局/弹性布局/flex.md) flex flow 
 
 ## *网格布局(Grid layout)*
 
