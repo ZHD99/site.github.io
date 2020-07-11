@@ -1,0 +1,118 @@
+body{
+    color: #b6b6b6;
+	padding: 0px;
+	margin: 0px; 
+	font-family: Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Hiragino Sans GB W3,WenQuanYi Micro Hei,sans-serif;
+}
+ul,ol,li{
+	list-style: none;   
+	margin: 0;
+    padding: 0px;
+}
+header{
+	width: 100%;
+	background-color: #323333;
+}
+.container{    
+	width: 80%;
+	margin: auto;
+	height: 52px;
+    color: #b6b6b6;
+    border-bottom: #000000 1px solid;
+}
+.navbar-list{
+	display: none;
+	margin: 0px;
+	background: #323333;
+	border-top: #6f6e6ea1 1px solid;
+	box-shadow: 0px 1px 1px 0px;
+}
+.navbar-list ul,.navbar-list ol,.navbar-list li{
+	padding: 8px 15px;
+}
+.navbar-header{
+	padding: 14px;
+	font-weight: bold;
+}
+a{
+    color: #b6b6b6;
+	text-decoration: none;
+}
+a:hover{
+	color: aliceblue;
+	text-decoration: none;
+}
+.navbar-header button{
+	float: right;
+	position: relative;
+	top: -4px;
+	width: 41px;
+	height: 36px;
+	color: #F0F8FF;
+    background: #323333;
+    border:1px #484848 solid;
+    outline: none;
+}
+.navbar-header button:active{
+	border: none;
+	background: #424343;
+	
+}
+.navbar-but-span{    
+    position: relative;
+    top: -22px;
+}
+.navbar-but-span span{   
+	position: relative;
+    top: -11px;
+    display: block;
+    height: 7px;
+    font-size: 23px;
+}
+@media screen and (min-width:985px) {
+	.navbar-header {
+	    padding: 14px;
+	    font-weight: bold;
+	    float: left;
+	}
+	.navbar-list {
+    width: 100%;
+	display: block;
+	}
+	.navbar-list ul, .navbar-list ol, .navbar-list li {
+	    padding: 8px 15px;
+	    float: left;
+	}
+	.navbar-list-right{
+		float: right;
+	}
+	.navbar-list ul, .navbar-list ol, .navbar-list li {
+	    padding: 8px 15px;
+	    float: left;
+	}
+	.navbar-but-span{
+		display: none;
+	}
+}
+@media screen and (max-width:1283px) {
+	.navbar-header {
+		display: none;
+	}
+	.navbar-list-right{
+		display: none;
+	}
+}
+@media screen and (max-width:985px) {
+	.navbar-header {
+		display: block;
+	}
+	.navbar-but-span{
+		display: block;
+	}
+	.container{
+		width: 100%;
+	}
+	.navbar-list{
+		display: none;
+	}
+}
