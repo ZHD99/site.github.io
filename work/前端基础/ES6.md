@@ -288,24 +288,132 @@ https://kangax.github.io/compat-table/es6/
 
   
 
- 
+### 箭头函数this指向和注意事项
+
+- es5 this 指向： 取决于调用该函数的上下文对象
+
+- es6 箭头函数没有this指向，箭头函数内部this只能通过查找作用域链来确定,一旦使用箭头函数，当前就不存在作用域链
+
+- 使用箭头函数的注意事项
+
+  1. 使用箭头函数 函数内部没有arguments
+
+     ```javascript
+      let getVal = (a, b) => {
+          console.log(arguments);
+          return a + b;
+      }
+      console.log(getVal(1, 3));
+     ```
+	   输出结果为: arguments is not defined
+	
+	   
+	
+	2. 箭头函数不能使用new关键字来实例化对象
+	
+	   ```javascript
+	   let Person = ()=>{
+	               
+	   };
+	           
+	           console.log(Person);
+	           
+	           let p = new Person();
+	   ```
+	   输出结果为: Uncaught TypeError: Person is not a constructor
+	
+	> function函数 也是一个对象，但是箭头函数不是一个对象，它其实就是一个语法糖
 
 
 
+# 解构赋值
 
+解构赋值含义：      
 
+- 解构赋值是对赋值运算符的一种扩展
+- 它针对数组和对象来进行操作
+- 优点：代码书写上简洁易读
 
+es5 解构赋值
 
+```
+       let node = {
+            type:'iden',
+            name:'foo'
+        }
+       let type = node.type;
+       let name = node.name;
+        console.log(type,name);
+```
 
+es6 解构赋值
 
+1. 完全解构
 
+   ```
+         let node = {
+               type:'iden',
+               name:'foo'
+           }
+           let {type,name} = node;
+           console.log(type,name);
+   ```
 
+   把对象或者数组全部解构赋值出来
 
+2. 不完全解构
 
+   ```
+   	 let obj = {
+               a:{
+                   name:"张三"
+               },
+               b:[],
+               c:'hello,world'
+           }
+     let {a} = obj;
+     console.log(a);
+   ```
 
+    可忽略
 
+3. 剩余运算符 解构
 
+   ```
+   	 let obj = {
+               a:{
+                   name:"张三"
+               },
+               b:[],
+               c:'hello,world'
+           }
+   let {a,...res} = obj;
+   console.log(res);
+   ```
 
+4. 默认值   解构
+
+   ```
+   // 默认值
+   let {a,b = 30} = {a:20};
+   ```
+
+5. 数组 解构
+
+   ```
+   let arr = [1,2,3];
+   let [a,b,c] = arr;
+   console.log(a,b,c);   // 123
+   ```
+
+   可嵌套
+
+   ```
+   let [a,[b],c] = [1,[2],3];
+   console.log(a,b,c);   // 123
+   ```
+
+   
 
 
 
