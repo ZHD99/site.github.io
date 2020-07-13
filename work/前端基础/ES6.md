@@ -233,13 +233,62 @@ https://kangax.github.io/compat-table/es6/
 
 ## 函数之扩展运算符、箭头函数
 
+- 拓展运算符: ...
 
+- 剩余运算符: 把多个独立的合并到一个数组中 ,通常放在函数的形参上
 
+- 拓展运算符: 将一个数组分割，并将各个项作为分离的参数传给函数
 
+  ```javascript
+  	// ES5 使用apply 
+          const maxNum = Math.max(20,30);
+          console.log(maxNum);
+  
+          处理数组中的最大值，使用apply
+          const arr = [10, 20, 50, 30, 90, 100, 40];
+          console.log(Math.max.apply(null,arr));
+  
+      // es6 扩展运算法更方便
+          console.log(Math.max(...arr));
+  ```
 
+  
 
+### ES6 箭头函数
 
+- es6 的箭头函数  使用 `=>` 来定义  function(){} 等于 （)=>{}
 
+  ```javascript
+   // 普通函数写法
+  	let add = function (a,b){
+          return a+b;
+      }
+   // 箭头函数写法
+      let add = (a,b)=>{
+          return a+b;
+      }
+   	// 箭头函数省略写法    	
+      	// 一个参数
+              let add = val =>{
+                  return val+5;
+              }
+              // 一个参数省略大括号
+              let add = val => val;
+  			// 操作
+              let add = val => (val+5);
+      	// 两个参数及以上
+              let add = (val1,val2) =>{
+                  return val1+val2;
+              }
+              // 两个参数省略大括号
+              let add = (val1,val2) => (val1+val2);
+  
+  console.log(add(10));
+  ```
+
+  
+
+ 
 
 
 
