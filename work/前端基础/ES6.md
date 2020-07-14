@@ -326,7 +326,7 @@ https://kangax.github.io/compat-table/es6/
 
 
 
-# 解构赋值
+## 解构赋值
 
 解构赋值含义：      
 
@@ -336,7 +336,7 @@ https://kangax.github.io/compat-table/es6/
 
 es5 解构赋值
 
-```
+```javascript
        let node = {
             type:'iden',
             name:'foo'
@@ -350,7 +350,7 @@ es6 解构赋值
 
 1. 完全解构
 
-   ```
+   ```javascript
          let node = {
                type:'iden',
                name:'foo'
@@ -363,7 +363,7 @@ es6 解构赋值
 
 2. 不完全解构
 
-   ```
+   ```javascript
    	 let obj = {
                a:{
                    name:"张三"
@@ -379,7 +379,7 @@ es6 解构赋值
 
 3. 剩余运算符 解构
 
-   ```
+   ```javascript
    	 let obj = {
                a:{
                    name:"张三"
@@ -393,14 +393,14 @@ es6 解构赋值
 
 4. 默认值   解构
 
-   ```
+   ```javascript
    // 默认值
    let {a,b = 30} = {a:20};
    ```
 
 5. 数组 解构
 
-   ```
+   ```javascript
    let arr = [1,2,3];
    let [a,b,c] = arr;
    console.log(a,b,c);   // 123
@@ -408,53 +408,405 @@ es6 解构赋值
 
    可嵌套
 
-   ```
+   ```javascript
    let [a,[b],c] = [1,[2],3];
    console.log(a,b,c);   // 123
    ```
 
    
 
+## 扩展的对象的功能
+
+- es6 直接写入变量和函数，作为对象的属性和方法
+
+  ```javascript
+  const name = ‘xmg’,
+  age = 20;
+  const person = {
+  	name,  // 等价于 name: name,age: age,
+  	age,
+  	sayName(){  // sayName = function(){}
+  		console.log(this.name);
+  	}
+  }
+  person.sayName();
+  ```
+
+  es6简化了属性名重复的问题
+
+- es6 函数  返回对象
+
+  ```javascript
+  function fn(x,y) {
+       return {x,y};
+   }
+   console.log(fn(10,20));
+  ```
+
+- es6 取值器简写
+
+  ```javascript
+  let cart = {
+       wheel:4,
+       set(newVal){
+           if(newVal < this.wheel){
+               throw new Error('轮子数太少了')
+           }
+           this.wheel = newVal;
+       },
+       get(){
+           return this.wheel;
+       }
+   }
+   // console.log(cart.get());
+   cart.set(6);
+   console.log(cart.get())
+  ```
+
+- es6 属性名表达式
+
+  ```javascript
+   		const obj = {};
+          obj.isShow = true;
+          const name = 'a';
+          obj[name+'bc'] = 123;
+          // console.log(obj);
+          obj['f'+'bc'] = function () {
+              console.log(this);
+          }
+          console.log(obj);  // {isShow:true,abc:123,fbc:f}
+  
+  
+  const name = 'a';
+          const obj = {
+              isShow:true,
+              [name+'bc']:123,
+              ['f'+name](){
+                  console.log(this);
+                  
+              }
+          }
+          console.log(obj);
+   // {isShow:true,abc:123,fa:f}
+  ```
+
+- 对象的方法
+
+  - is()  和  ===
+
+    - 比较2个值是否严格相等
+    - is() 比 === 更严谨
+    - is() 解决了=== 的特殊性
+
+  - assign()   属于浅拷贝
+
+    - 用于对象的合并  
+
+    ```javascript
+    
+            // ***** assign() ***
+            // 对象的合并
+            // Object.assign(target,obj1,obj2....)
+            
+            // 返回合并之后的新对象
+            let newObj = Object.assign({},{a:1},{b:2});
+            console.log(newObj);  
+            // {a:1,b:2}
+    ```
+
+
+
+## Symbol类型
+
+- 在es6 有原始数据类型Symbol, 它表示独一无二的值
+
+- 最大用处：用来定义对象的私有变量
+
+        const name = Symbol('name');
+        const name2 = Symbol('name');
+        console.log(name === name2);
+        // 每一个 symbol 都是不同的内存地址
+    
+- 取值
+
+      console.log(obj[s1]);
+      let s1 = Symbol('s1');
+      console.log(s1);
+      let obj = {
+          [s1]:'小马哥'
+      };
+      console.log(obj[s1]);
+  //Symbol变量无法被遍历，且不易被获取
+  
+      let s = Object.getOwnPropertySymbols(obj);
+      console.log(s);//[Symbol(s1)]
+      console.log(s[0]);//Symbol(s1)
+      
+      let l = Reflect.ownKeys(obj);
+      console.log(l);//[Symbol(s1)]
+      console.log(l[0]);//Symbol(s1)
+  
+
+如果用Symbol定义的对象中的变量，取值时一定要用obj[变量名],不能用(obj,s1)点获取
 
 
 
 
 
+## Set 数据类型
+
+- 集合：表示无重复值的有序列表
+
+- 创建：` let set = new Set();`
+
+- 添加元素
+
+          // 添加元素
+          set.add(2);  // 添加数值
+          set.add('4'); // 添加字符串
+          set.add('4'); 
+
+- 没有重复的值，重复添加会被忽略掉
+
+
+
+- 删除元素
+
+          set.delete(2);        
+          console.log(set);
+
+- 校验某个值是否在set中
+
+  - `console.log(set.has('4'));`
+
+- forEach
+
+          set.forEach((val,key)=>{
+                      console.log(val);
+                      console.log(key);
+          })
+
+- 将set 转换成数组
+
+          let set2 = new Set([1, 2, 3, 3, 3, 4]);
+          // 扩展运算符
+          let arr = [...set2]
+          console.log(arr);
+
+- set中对象的引用无法被释放
+
+  - 可以通过WeakSet进行释放对象引用
+
+          // let set3 = new Set(),obj = {};
+          // set3.add(obj);
+          // // 释放当前的资源
+          // obj = null;
+          // console.log(set3);
+          
+          let set4 = new WeakSet(),
+              obj = {};
+          set4.add(obj);
+          // 释放当前的资源
+          obj = null;
+          console.log(set4);
+          
+          // WeakSet
+          // 1.不能传入非对象类型的参数
+          // 2.不可迭代
+          // 3.没有forEach()
+          // 4.没有size属性
+
+
+## Map 数据类型
+
+- Map类型是键值对的有序列表，键和值是任意类型
+- map 
+  - 创建map
+    - `let map = new Map();`
+  - 设置值
+    - `map.set('name','张三');`
+  - 获取值
+    - `map.get('name');`
+  - 校验
+    - `map.has('name');`
+  - 删除
+    - `map.delete('name');`
+  - 清除
+    - `map.clear();`
+- map中对象的引用无法被释放,与set一致
+
+
+
+## 数组
+
+- 数组方法 `from()`和`of()`
+-  `from()`将伪数组转换成为真正的数组
+
+
+          function add() {
+              // es5转换
+              // let arr = [].slice.call(arguments);
+              // console.log(arr);
+              // es6写法
+              let arr = Array.from(arguments);
+              console.log(arr);
+          }
+            add(1,2,3);
+            // 扩展运算符 将伪数组转换成真正的数组
+            // console.log([...lis]);
+            // from() 还可以接受第二个参数，用来对每个元素进行处理
+            
+            let liContents = Array.from(lis, ele => ele.textContent);
+            // console.log(liContents);
+
+
+- `of()` 将任意的一组数据类型，转换成数组
+
+          console.log(Array.of(3, 11, 20, [1, 2, 3], {
+              id: 1
+          }));
+      
+- `copywithin()` 数组内部将制定位置的元素复制到其它的位置，返回当前数组
+        
+      
+          // 从3位置往后的所有数值，替换从0位置往后的三个数值
+          console.log([1, 2, 3, 8, 9, 10].copyWithin(0, 3));
+          //[8,9,10,8,9,10]
+
+- `find()` 和`findIndex()`
+
+          // find()找出第一个符合条件的数组成员
+          let num = [1, 2, -10, -20, 9, 2].find(n => n < 0)
+          // console.log(num);
+          
+          // findIndex()找出第一个符合条件的数组成员的索引
+          let numIndex = [1, 2, -10, -20, 9, 2].findIndex(n => n < 0)
+          // console.log(numIndex);
+
+- `entries()` 、`keys()` 、`values()` 返回一个遍历器  可以使用for...of循环进行遍历
+
+          // keys() 对键名遍历
+          // values() 对值遍历
+          // entries() 对键值对遍历
+          // console.log(['a','b'].keys());
+          
+          for (let index of ['a', 'b'].keys()) {
+              console.log(index);
+          }
+          
+          for (let ele of ['a', 'b'].values()) {
+              console.log(ele);
+          }
+          
+          for(let [index,ele] of ['a','b'].entries()){
+              console.log(index,ele); 
+          }
+          let letter = ['a','b','c'];
+          let it = letter.entries();
+          // console.log(it.next().value);
+          // console.log(it.next().value);
+          // console.log(it.next().value);
+          // console.log(it.next().value);
+
+- `includes()` 返回一个布尔值，表示某个数组是否包含给定的值
+
+          console.log([1,2,3].includes(2));
+          console.log([1,2,3].includes('4'));
+          
+          // 之前 indexof()
+          console.log([1,2,3].indexOf('2'));
+
+通过`includes()` 替代了indexof() 判断数组是否包含这个元素
 
 
 
 
 
+## 迭代器Interator的用法
+
+- iterator 是一种新的遍历机制
+
+    
+
+          //   Iterator
+          //   是一种新的遍历机制，两个核心
+          // 1.迭代器是一个接口，能快捷的访问数据，通过Symbol.iterator来创建迭代器 通过迭代器的next()获取迭代之后的结果
+          // 2.迭代器是用于遍历数据结构的指针(数据库的游标)
+          
+          // 使用迭代
+          const items = ['one', 'two', 'three'];
+          // 1.创建新的迭代器
+          const ite = items[Symbol.iterator]();
+          console.log(ite.next()); //{value: "one", done: false} done如果为false表示遍历继续 如果为true表示遍历完成
+          console.log(ite.next());
+          console.log(ite.next());
+          console.log(ite.next());
+
+## 生成器Generator的用法
+
+- generator函数 可以通过yield关键字，将函数挂起，为了改变执行流提供了可能，同时为了做异步编程提供了方案
+- 它普通函数的区别
+  1. function后面 函数名之前有个*
+  2. 只能在函数内部使用yield表达式，让函数挂起
+
+  
+         function* func() {
+            console.log('one');
+            yield 2;
+            console.log('two');
+            yield 3;
+            console.log('end');   
+        }
+        // 返回一个遍历器对象 可以调用next()
+        let fn = func();
+        // console.log(o)
+        console.log(fn.next());
+        console.log(fn.next());
+        console.log(fn.next()); 
+        
+        // 总结：generator函数是分段执行的，yield语句是暂停执行  而next()恢复执行
 
 
+        function* add() {
+            console.log('start');
+            // x 可真的不是yield '2'的返回值，它是next()调用 恢复当前yield()执行传入的实参
+            let x = yield '2';
+            console.log('one:'+x);
+            let y = yield '3';
+            console.log('two:'+y);
+            return x+y;  
+        }
+        const fn = add();
+        console.log(fn.next()); //{value:'2',done:false}
+        console.log(fn.next(20)); //{value:'3',done:false}
+        console.log(fn.next(30)); //{value:50,done:true}
 
 
+​       
 
+   - 使用场景1：为不具备Interator接口的对象提供了遍历操作
 
+   
 
+         function* objectEntries(obj) {
+             // 获取对象的所有的key保存到数组 [name,age]
+             const propKeys = Object.keys(obj);
+             for(const propkey of propKeys){
+                 yield [propkey,obj[propkey]]
+             }
+         }   
+         const obj = {
+             name:'小马哥',
+             age:18
+         }
+         obj[Symbol.iterator] = objectEntries;
+         console.log(obj);
+    
+     for(let [key,value] of objectEntries(obj)){
+         console.log(`${key}:${value}`);  
+     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 使用场景2：
 
 
 
