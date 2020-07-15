@@ -808,13 +808,179 @@ es6 解构赋值
 
 - 使用场景2：
 
+       // Generator 部署ajax操作，让异步代码同步化
+        // 回调地狱
+        /* $.ajax({
+            url: 'https://free-api.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976',
+            method: 'get',
+            success(res) {
+                console.log(res);
+        
+                // 继续发送请求
+                $.ajax({
+                    url: '',
+                    method: 'get',
+                    success(res1) {
+                        // 发送ajax
+                        $.ajax({
+                            url: '',
+                            method: 'get',
+                            success(res2) {
+        
+                                // 发送ajax
+                                $
+                            }
+                        })
+                    }
+                })
+        
+            }
+        }) */
+        
+        /* function* main() {
+            console.log('main');
+        
+            let res = yield request(
+                'https://free-api.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976'
+            )
+            console.log(res);
+        
+            // 执行后面的操作
+            console.log('数据请求完成，可以继续操作');
+        
+        }
+        const ite = main();
+        ite.next();
+        
+        function request(url) {
+            $.ajax({
+                url,
+                method: 'get',
+                success(res) {
+                    ite.next(res);
+                }
+            })
+        } */
+   
+- 使用场景3：
+
+        // 加载loading...页面
+        // 数据加载完成...（异步操作）
+        // loading关闭掉
+        
+        function* load() {
+            loadUI();
+            yield showData();
+            hideUI();
+        }
+        
+        let itLoad = load();
+        itLoad.next();
+        
+        function loadUI() {
+            console.log('加载loading...页面');
+        }
+        function showData() {
+            // 模拟异步操作
+            setTimeout(() => {
+                console.log('数据加载完成');
+                itLoad.next();
+                
+            }, 1000);
+        }
+        function hideUI() {
+            console.log('隐藏loading...页面');
+            
+        }
 
 
 
+## Promise的基本使用
+
+- Promise  相当于一个容器，保存着未来才会结束的事件(异步操作)的一个结果
+
+- 各种异步操作都可以用同样的方法进行处理 axios 
+
+- 特点：
+  1. 对象的状态不受外界影响  处理异步操作 三个状态  Pending(进行)  Resolved(成功) Rejected(失败)
+  2. 一旦状态改变，就不会再变，任何时候都可以得到这个结果
+  
+-  then() 第一个参数是成功(resolved)回调函数，第二个参数是可选的 是失败 (rejected)状态回调的函数
+
+- then()返回一个新的promise实例，可以采用链式编程 
+  
+- catch() 方法返回一个错误信息，配合then使用
+  
+- 示例1：
+	
+	
+	let pro = new Promise(function(resolved,rejected) {
+	        //执行异步操作
+	        let res = {
+	            code: 201,
+	            data:{
+	                name:'小马哥'
+	            },
+	            error:'失败了'
+	        }
+	        setTimeout(() => {
+	            if(res.code === 200){
+	                resolved(res.data);
+	            }else{
+	                rejected(res.error);
+	            }
+	        }, 1000);
+	    })
+	    console.log(pro);
+	    pro.then((val)=>{
+	        console.log(val);
+	        
+	},(err)=>{
+	    console.log(err);
+	    
+	});
+	
+	
+- then 回调的2个参数，成功(resolved)或失败 (rejected)
+  - 示例2：
+
+         function timeOut(ms) {
+            return new Promise((resolved,rejected)=>{
+                setTimeout(() => {
+                    resolved('hello promise success!!')
+                }, ms);
+            })
+        }
+        timeOut(2000).then((val)=>{
+            console.log(val);
+            
+        }) 
 
 
 
+- 使用promise封装ajax 
 
-
-
-
+          // https://free-api.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976
+          const getJSON = function (url) {
+              return new Promise((resolve, reject) => {
+                  const xhr = new XMLHttpRequest();
+                  xhr.open('GET', url);
+                  xhr.onreadystatechange = handler;
+                  xhr.responseType = 'json';
+                  xhr.setRequestHeader('Accept', 'application/json');
+                  // 发送
+                  xhr.send();
+      
+                  function handler() {
+      
+                      if (this.readyState === 4) {
+                          if (this.status === 200) {
+                              resolve(this.response.HeWeather6);
+                          } else {
+                              reject(new Error(this.statusText));
+                          }
+                      }
+      
+                  }
+              })
+          }
