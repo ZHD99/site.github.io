@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>音乐播放器</title>
+	</head>
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+	</style>
+	<body>
+		
+		<div id="app">
+			<audio controls="controls" loop="loop">
+				<source :src="songSrc" type="audio/mp4"/>
+			</audio>
+			<ul>
+				<li v-for="music in musicData">
+					 {{music.id}} — 歌名： {{music.name}} — {{music.author}}
+				</li>
+			</ul>
+			<button>上一首</button>
+			<button>開始播放</button>
+			<button>暫停</button>
+			<button>下一首</button>
+		</div>
+		
+		
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script>
+			
+		const musicData = [{
+				id: 1,
+				name: '放个大招给你看',
+				author: '忘记了',
+				songSrc: 'music/放个大招给你看.mp4'
+			},{
+				id: 2,
+				name: '宠坏',
+				author: '邓钰',
+				songSrc: 'music/宠坏.mp4'
+			},{
+				id: 3,
+				name: '雅俗共赏',
+				author: '大鹅',
+				songSrc: 'music/雅俗共赏.mp4'
+			},{
+				id: 4,
+				name: '遥不可及的你',
+				author: '邓钰',
+				songSrc: '/music/遥不可及的你.mp4'
+			},{
+				id: 5,
+				name: '一路向北.mp4',
+				author: '温柔先生',
+				songSrc: 'music/一路向北.mp4'
+			}];
+			
+			new Vue({
+				el:'#app',
+				data: {
+					musicData,
+					songSrc: 'music/放个大招给你看.mp4'
+				},
+				methods:{
+					
+				}
+			});
+			
+		</script>
+	</body>
+</html>

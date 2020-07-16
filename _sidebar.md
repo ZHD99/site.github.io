@@ -28,19 +28,27 @@
    - [移动端响应式](work/移动端开发/移动端响应式.md)
   
 - 前端库
-    - [学习中](work/开发工具/aa.md)
+    - [jQuery](work/前端库/jquery.md)
+    - [Underscore](work/前端库/underscore.md)
+    - [Lodash](work/前端库/lodash.md)
+    - [Animate](work/前端库/animate.md)
+    - [Velocity](work/前端库/velocity.md)
    
 - 前端框架
 
   - Ui
-    - [学习中](work/开发工具/aa.md)
+    - [Bootstrap](work/前端框架/bootstrap.md)
   - CSS
-    - [Less](work/开发工具/aa.md)
-    - [scss/sass](work/开发工具/aa.md)
+    - [Less](work/前端框架/less.md)
+    - [Scss/Sass](work/前端框架/sass.md)
+    - [Stylus](work/前端框架/stylus.md)
   - JS
-    - [学习中](work/开发工具/aa.md)
+    - [Vue](work/前端框架/vue.md)
 
 - 开发工具
 
   - [Git ](work/开发工具/Git.md)
+  - [grunt ](work/开发工具/grunt.md)
+  - [glup ](work/开发工具/glup.md)
+  - [webpack ](work/开发工具/webpack.md)
 

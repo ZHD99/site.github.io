@@ -584,241 +584,233 @@ JavaScript
 
 
 
+## 包装类		
 
+- 在JS中为我们提供了三个包装类：
+  String() Boolean() Number()
+  - 通过这三个包装类可以创建基本数据类型的对象
+    例子：
+    var num = new Number(2);
+    var str = new String("hello");
+    var bool = new Boolean(true);
+  - 但是在实际应用中千万不要这么干。
+- 当我们去操作一个基本数据类型的属性和方法时，
+  解析器会临时将其转换为对应的包装类，然后再去操作属性和方法，
+  操作完成以后再将这个临时对象进行销毁。
 
+## 字符串的相关的方法
 
+- length
+  - 获取字符串的长度
+- charAt()
+  - 根据索引获取指定的字符
+- charCodeAt()
+  - 根据索引获取指定的字符编码
+- String.fromCharCode()
+  - 根据字符编码获取字符
+- indexOf()
+  - lastIndexOf()
+  - 从一个字符串中检索指定内容
+  - 需要一个字符串作为参数，这个字符串就是要检索的内容，
+    如果找到该内容，则会返回其第一次出现的索引，如果没有找到则返回-1。
+  - 可以指定一个第二个参数，来表示开始查找的位置
+  - indexOf()是从前向后找
+  - lastIndexOf()是从后向前找
+- slice()
+  - 可以从一个字符串中截取指定的内容，并将截取到内容返回，不会影响原变量
+  - 参数：
+    第一个：截取开始的位置（包括开始）
+    第二个：截取结束的位置（不包括结束）
+    	- 可以省略第二个参数，如果省略则一直截取到最后
+    - 可以传负数，如果是负数则从后往前数
+- substr()	
+  - 和slice()基本一致，不同的是它第二个参数不是索引，而是截取的数量
+- substring()
+  - 和slice()基本一致，不同的是它不能接受负值作为参数，如果设置一个负值，则会自动修正为0，
+    substring()中如果第二个参数小于第一个，自动调整位置
+- toLowerCase() 
+  - 将字符串转换为小写并返回
+- toUpperCase() 
+  - 将字符串转换为大写并返回
+- split()
+  - 可以根据指定内容将一个字符串拆分为一个数组
+  - 参数：
+    - 需要一个字符串作为参数，将会根据字符串去拆分数组
+      可以接收一个正则表达式，此时会根据正则表达式去拆分数组
+- match() 
+  - 可以将字符串中和正则表达式匹配的内容提取出来
+  - 参数：
+    - 正则表达式，可以根据该正则表达式将字符串中符合要求的内容提取出来
+      并且封装到一个数组中返回
+- replace()  
+  - 可以将字符串中指定内容替换为新的内容
+  - 参数：
+    - 第一个：被替换的内容，可以是一个正则表达式
+    - 第二个：替换的新内容
+- search() 
+  - 可以根据正则表达式去字符串中查找指定的内容
+  - 参数：
+    正则表达式，将会根据该表达式查询内容，
+    		并且将第一个匹配到的内容的索引返回，如果没有匹配到任何内容，则返回-1。
 
+## 正则表达式
 
+##### 元字符
 
+##### . 匹配任意的字符
 
+##### ^ $ 位置字符
 
+^ 匹配字符串开始的位置
+$ 匹配字符串结束的位置
 
+##### 匹配数字和字母(\w和\W)
 
+\w 匹配数字和字母和下划线
+\W 匹配非数字和字母
 
+##### 匹配数字和非数字 (\d和\D)
 
+\d 匹配数字 
+\D 匹配非数字
 
+##### 匹配空白字符(\s和\S)
 
+\s 匹配空白字符
+\S 匹配非空白字符
 
+##### [] 匹配里面的任意字符
 
+##### [^a-z] 匹配除a到z之外的所有字符
 
+##### + 匹配重复一次或者多次
 
+##### * 匹配重复0次或者多次字符
 
+##### ? 匹配重复1次或者是0次
 
+##### () 分组匹配
 
+##### | 或者
 
+##### ?: 分组匹配不捕获
 
+捕获方法： RegExp.$1
 
+##### ?=元 正向肯定预查  表示肯定是元，但不匹配
 
+##### ?!=元 正向否定预查  表示肯定不是元，不匹配
 
+##### ?<=￥ 反向肯定预查  表示肯定是￥，但不匹配
 
+##### ?!=元 反向否定预查  表示肯定不是￥，不匹配
 
+##### {4,8}最少4位 最多8位匹配
 
+##### 正则实例对象的方法
 
-## 对象（Object）
-- 对象是JS中的引用数据类型
-- 对象是一种复合数据类型，在对象中可以保存多个不同数据类型的属性
-- 使用typeof检查一个对象时，会返回object
+#### test()
+
+```
+返回一个布尔值，表示当前模式是否能匹配参数字符串
+```
+
+#### exec()
+
+```
+用来返回匹配的结果。如果发现匹配，就返回一个数组，数组中的成员都是匹配的子字符串，否则返回null
+```
+
+### 字符串方法 
+
+#### match()
+
+```
+对字符串进行正则匹配，返回匹配的结果
+```
+
+#### search()
+
+```
+返回第一个满足条件的匹配结果在整个字符串中的位置。如果没有任何匹配，则返回-1
+```
+
+#### replace()
+
+```
+可以替换匹配的值。它接受两个参数，第一个是正则表达式，表示搜索模式，第二个是替换的内容
+```
+
+​		
+
+## Date
+
+- 日期的对象，在JS中通过Date对象来表示一个时间
+
 - 创建对象
-	- 方式一：
-		- var obj = new Object();
-	- 方式二：
-		- var obj = {};
-	
-- 向对象中添加属性
-	- 语法：
-		对象.属性名 = 属性值;
-		对象["属性名"] = 属性值;
-		
-		- 对象的属性名没有任何要求，不需要遵守标识符的规范，
-			但是在开发中，尽量按照标识符的要求去写。
-		- 属性值也可以任意的数据类型。
-- 读取对象中的属性
-	- 语法：
-		对象.属性名
-		对象["属性名"]
-	- 如果读取一个对象中没有的属性，它不会报错，而是返回一个undefined
-	
-- 删除对象中的属性
-	- 语法：
-		delete 对象.属性名
-		delete 对象["属性名"]
-	
-- 使用in检查对象中是否含有指定属性
-	- 语法："属性名" in 对象
-		- 如果在对象中含有该属性，则返回true
-			如果没有则返回false
-	
-- 使用对象字面量，在创建对象时直接向对象中添加属性
-	语法：
-		var obj = {
-						属性名:属性值,
-						属性名:属性值,
-						属性名:属性值,
-						属性名:属性值
-				}
-	
-- 基本数据类型和引用数据类型
-	- 基本数据类型
-		String Number Boolean Null Undefined
-	- 引用数据类型
-		Object
-	- 基本数据类型的数据，变量是直接保存的它的值。
-		变量与变量之间是互相独立的，修改一个变量不会影响其他的变量。
-	- 引用数据类型的数据，变量是保存的对象的引用（内存地址）。
-		如果多个变量指向的是同一个对象，此时修改一个变量的属性，会影响其他的变量。
-	- 比较两个变量时，对于基本数据类型，比较的就是值，
-		对于引用数据类型比较的是地址，地址相同才相同
-			
-## 函数（Function）	
-- 函数也是一个对象，也具有普通对象的功能
-- 函数中可以封装一些代码，在需要的时候可以去调用函数来执行这些代码
-- 使用typeof检查一个函数时会返回function
-- 创建函数
-	- 函数声明
-		function 函数名([形参1,形参2...形参N]){
-			语句...
-		}
-	
-	- 函数表达式
-		var 函数名 = function([形参1,形参2...形参N]){
-			语句...
-		};
-	
-- 调用函数
-	- 语法：函数对象([实参1,实参2...实参N]);
-		fun() sum() alert() Number() parseInt()
-	- 当我们调用函数时，函数中封装的代码会按照编写的顺序执行
-- 形参和实参
-	- 形参：形式参数
-		- 定义函数时，可以在()中定义一个或多个形参，形参之间使用,隔开
-			定义形参就相当于在函数内声明了对应的变量但是并不赋值，
-			形参会在调用时才赋值。
-		
-	- 实参：实际参数
-		- 调用函数时，可以在()传递实参，传递的实参会赋值给对应的形参,
-			调用函数时JS解析器不会检查实参的类型和个数，可以传递任意数据类型的值。
-			如果实参的数量大于形参，多余实参将不会赋值，
-			如果实参的数量小于形参，则没有对应实参的形参将会赋值undefined
-				
-		
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-## 高级函数
-- 返回值，就是函数执行的结果。
-	- 使用return 来设置函数的返回值。
-	- 语法：return 值;
-		- 该值就会成为函数的返回值，可以通过一个变量来接收返回值
-	- return后边的代码都不会执行，一旦执行到return语句时，函数将会立刻退出。
-	- return后可以跟任意类型的值，可以是基本数据类型，也可以是一个对象。
-	- 如果return后不跟值，或者是不写return则函数默认返回undefined。
-	- break、continue和return
-		- break
-			- 退出循环
-		- continue
-			- 跳过当次循环
-		- return
-			- 退出函数
-	
-- 参数，函数的实参也可以是任意的数据类型。
-- 方法（method）
-	- 可以将一个函数设置为一个对象的属性，
-		当一个对象的属性是一个函数时，
-			我们称这个函数是该对象的方法。
-	- 对象.方法名();
-	- 函数名();	
-		
-## 作用域
-- 作用域简单来说就是一个变量的作用范围。
-- 在JS中作用域分成两种：
+  - 创建一个当前的时间对象
+    var d = new Date();
+  - 创建一个指定的时间对象
+    var d = new Date("月/日/年 时:分:秒");
 
-## 全局作用域
+- 方法：
+  getDate()
+  	- 当前日期对象是几日（1-31）
+  	
+  getDay() 
+  	- 返回当前日期对象时周几（0-6）
+  		- 0 周日
+  		- 1 周一 。。。
+  		
+  getMonth()
+  	- 返回当前日期对象的月份（0-11）
+  	- 0 一月 1 二月 。。。
+  getFullYear() 从 Date 对象以四位数字返回年份。 
 
-- 直接在script标签中编写的代码都运行在全局作用域中
-- 全局作用域在打开页面时创建，在页面关闭时销毁。
-- 全局作用域中有一个全局对象window，window对象由浏览器提供，
-	可以在页面中直接使用，它代表的是整个的浏览器的窗口。
-- 在全局作用域中创建的变量都会作为window对象的属性保存
-	在全局作用域中创建的函数都会作为window对象的方法保存
-- 在全局作用域中创建的变量和函数可以在页面的任意位置访问。
-	在函数作用域中也可以访问到全局作用域的变量。
-- 尽量不要在全局中创建变量	
+  getHours() 返回 Date 对象的小时 (0 ~ 23)。 
+  getMinutes() 返回 Date 对象的分钟 (0 ~ 59)。 
+  getSeconds() 返回 Date 对象的秒数 (0 ~ 59)。 
+  getMilliseconds() 返回 Date 对象的毫秒(0 ~ 999)。 
 
-## 函数作用域
-- 函数作用域是函数执行时创建的作用域，每次调用函数都会创建一个新的函数作用域。
-- 函数作用域在函数执行时创建，在函数执行结束时销毁。
-- 在函数作用域中创建的变量，不能在全局中访问。
-- 当在函数作用域中使用一个变量时，它会先在自身作用域中寻找，
-	如果找到了则直接使用，如果没有找到则到上一级作用域中寻找，
-		如果找到了则使用，找不到则继续向上找，一直会
-	
-- 变量的声明提前
-- 在全局作用域中，使用var关键字声明的变量会在所有的代码执行之前被声明，但是不会赋值。
-	所以我们可以在变量声明前使用变量。但是不使用var关键字声明的变量不会被声明提前。
-- 在函数作用域中，也具有该特性，使用var关键字声明的变量会在函数所有的代码执行前被声明，
-	如果没有使用var关键字声明变量，则变量会变成全局变量
-	
-- 函数的声明提前
-- 在全局作用域中，使用函数声明创建的函数（function fun(){}）,会在所有的代码执行之前被创建，
-	也就是我们可以在函数声明前去调用函数，但是使用函数表达式(var fun = function(){})创建的函数没有该特性
-- 在函数作用域中，使用函数声明创建的函数，会在所有的函数中的代码执行之前就被创建好了。
+  getTime()
+  	- 返回当前日期对象的时间戳
+  	- 时间戳，指的是从1970年月1日 0时0分0秒，到现在时间的毫秒数
+  		计算机底层保存时间都是以时间戳的形式保存的。
+  		
+  Date.now()
+  	- 可以获取当前代码执行时的时间戳
 
-## this（上下文对象）	
-- 我们每次调用函数时，解析器都会将一个上下文对象作为隐含的参数传递进函数。
-	使用this来引用上下文对象，根据函数的调用形式不同，this的值也不同。
-- this的不同的情况：   
-	1.以函数的形式调用时，this是window  
-	2.以方法的形式调用时，this就是调用方法的对象     
-	3.以构造函数的形式调用时，this就是新创建的对象   
-		
-## 构造函数
-- 构造函数是专门用来创建对象的函数
-- 一个构造函数我们也可以称为一个类
-- 通过一个构造函数创建的对象，我们称该对象时这个构造函数的实例
-- 通过同一个构造函数创建的对象，我们称为一类对象
-- 构造函数就是一个普通的函数，只是他的调用方式不同，
-	如果直接调用，它就是一个普通函数
-	如果使用new来调用，则它就是一个构造函数
-	
-- 例子：
-	function Person(){
-	
-	}
-	
-- 构造函数的执行流程：
-	1.创建一个新的对象
-	2.将新的对象作为函数的上下文对象（this）
-	3.执行函数中的代码
-	4.将新建的对象返回
-	
-- instanceof 用来检查一个对象是否是一个类的实例
-	- 语法：对象 instanceof 构造函数
-		- 如果该对象时构造函数的实例，则返回true，否则返回false
-		- Object是所有对象的祖先，所以任何对象和Object做instanceof都会返回true
-	
-- 枚举对象中的属性
-	for...in
-	语法：
-		for(var 属性名 in 对象){
-		
-		}
-	
-	for...in语句的循环体会执行多次，对象中有几个属性就会执行几次，
-		每次讲一个属性名赋值给我们定义的变量，我们可以通过它来获取对象中的属性
-			
-		
-		
-		
+## Math			
+
+- Math属于一个工具类，它不需要我们创建对象，它里边封装了属性运算相关的常量和方法
+  我们可以直接使用它来进行数学运算相关的操作
+- 方法：
+  Math.PI  
+  	- 常量，圆周率  
+  Math.abs()  
+  	- 绝对值运算  
+  Math.ceil()  
+  	- 向上取整  
+  Math.floor()  
+  	- 向下取整  
+  Math.round()  
+  	- 四舍五入取整  
+  Math.random()	  
+  	- 生成一个0-1之间的随机数  
+  	- 生成一个x-y之间的随机数 
+  		Math.round(Math.random()*(y-x)+x);   
+  Math.pow(x,y)   
+  	- 求x的y次幂  
+  Math.sqrt()   
+  	- 对一个数进行开方   
+  Math.max()  
+  	- 求多个数中最大值   
+  Math.min()  
+  	- 求多个数中的最小值  
+  		
+
+​	
 
 
 
@@ -831,25 +823,11 @@ JavaScript
 
 
 
-​		
-​		
-## 原型（prototype）
-- 创建一个函数以后，解析器都会默认在函数中添加一个数prototype
-	prototype属性指向的是一个对象，这个对象我们称为原型对象。
-- 当函数作为构造函数使用，它所创建的对象中都会有一个隐含的属性执行该原型对象。
-	这个隐含的属性可以通过对象.__proto__来访问。
-- 原型对象就相当于一个公共的区域，凡是通过同一个构造函数创建的对象他们通常都可以访问到相同的原型对象。
-	我们可以将对象中共有的属性和方法统一添加到原型对象中，
-		这样我们只需要添加一次，就可以使所有的对象都可以使用。
-- 当我们去访问对象的一个属性或调用对象的一个方法时，它会先自身中寻找，
-	如果在自身中找到了，则直接使用。
-	如果没有找到，则去原型对象中寻找，如果找到了则使用，
-	如果没有找到，则去原型的原型中寻找，依此类推。直到找到Object的原型为止，Object的原型的原型为null，
-	如果依然没有找到则返回undefined
-- hasOwnProperty()
-	- 这个方法可以用来检查对象自身中是否含有某个属性
-	- 语法：对象.hasOwnProperty("属性名")
-	
+
+
+
+
+
 ## 数组（Array）
 - 数组也是一个对象，是一个用来存储数据的对象
 	和Object类似，但是它的存储效率比普通对象要高
@@ -974,209 +952,9 @@ JavaScript
 			return b-a;
 		}
 			
-## 函数间接方法和其他属性
-- call()
-- apply()
-	- 这两个方法都是函数对象的方法需要通过函数对象来调用
-	- 通过两个方法可以直接调用函数，并且可以通过第一个实参来指定函数中this
-	- 不同的是call是直接传递函数的实参而apply需要将实参封装到一个数组中传递
-- arguments
-	- arguments和this类似，都是函数中的隐含的参数
-	- arguments是一个类数组元素，它用来封装函数执行过程中的实参
-		所以即使不定义形参，也可以通过arguments来使用实参
-	- arguments中有一个属性callee表示当前执行的函数对象
-	
-- this
-	- this是函数的上下文对象，根据函数的调用方式不同会执向不同的对象
-		1.以函数的形式调用时，this是window    
-		2.以方法的形式调用时，this是调用方法的对象    
-		3.以构造函数的形式调用时，this是新建的那个对象   
-		4.使用call和apply调用时，this是指定的那个对象   
-		5.在全局作用域中this代表window   
-
-## 包装类		
-- 在JS中为我们提供了三个包装类：
-	String() Boolean() Number()
-	- 通过这三个包装类可以创建基本数据类型的对象
-	例子：
-		var num = new Number(2);
-		var str = new String("hello");
-		var bool = new Boolean(true);
-	- 但是在实际应用中千万不要这么干。
-
-- 当我们去操作一个基本数据类型的属性和方法时，
-	解析器会临时将其转换为对应的包装类，然后再去操作属性和方法，
-	操作完成以后再将这个临时对象进行销毁。
-
-## 字符串的相关的方法
-- length
-	- 获取字符串的长度
-- charAt()
-	- 根据索引获取指定的字符
-- charCodeAt()
-	- 根据索引获取指定的字符编码
-- String.fromCharCode()
-	- 根据字符编码获取字符
-- indexOf()
-  - lastIndexOf()
-	- 从一个字符串中检索指定内容
-	- 需要一个字符串作为参数，这个字符串就是要检索的内容，
-		如果找到该内容，则会返回其第一次出现的索引，如果没有找到则返回-1。
-	- 可以指定一个第二个参数，来表示开始查找的位置
-	- indexOf()是从前向后找
-	- lastIndexOf()是从后向前找
-- slice()
-	- 可以从一个字符串中截取指定的内容，并将截取到内容返回，不会影响原变量
-	- 参数：
-		第一个：截取开始的位置（包括开始）
-		第二个：截取结束的位置（不包括结束）
-			- 可以省略第二个参数，如果省略则一直截取到最后
-		- 可以传负数，如果是负数则从后往前数
-- substr()	
-	- 和slice()基本一致，不同的是它第二个参数不是索引，而是截取的数量
-	
-- substring()
-	- 和slice()基本一致，不同的是它不能接受负值作为参数，如果设置一个负值，则会自动修正为0，
-		substring()中如果第二个参数小于第一个，自动调整位置
-- toLowerCase() 
-	- 将字符串转换为小写并返回
-- toUpperCase() 
-	- 将字符串转换为大写并返回
-- split()
-	- 可以根据指定内容将一个字符串拆分为一个数组
-	- 参数：
-		- 需要一个字符串作为参数，将会根据字符串去拆分数组
-			可以接收一个正则表达式，此时会根据正则表达式去拆分数组
-	
-- match() 
-	- 可以将字符串中和正则表达式匹配的内容提取出来
-	- 参数：
-		- 正则表达式，可以根据该正则表达式将字符串中符合要求的内容提取出来
-				并且封装到一个数组中返回
-
-- replace()  
-	- 可以将字符串中指定内容替换为新的内容
-	- 参数：
-		- 第一个：被替换的内容，可以是一个正则表达式
-		- 第二个：替换的新内容
-	
-- search() 
-	- 可以根据正则表达式去字符串中查找指定的内容
-	- 参数：
-		正则表达式，将会根据该表达式查询内容，
-				并且将第一个匹配到的内容的索引返回，如果没有匹配到任何内容，则返回-1。
-	
-## 正则表达式
-
-### 元字符
-### . 匹配任意的字符
-### ^ $ 位置字符
-^ 匹配字符串开始的位置
-$ 匹配字符串结束的位置
-### 匹配数字和字母(\w和\W)
-\w 匹配数字和字母和下划线
-\W 匹配非数字和字母
-### 匹配数字和非数字 (\d和\D)
-\d 匹配数字 
-\D 匹配非数字
-### 匹配空白字符(\s和\S)
-\s 匹配空白字符
-\S 匹配非空白字符
-### [] 匹配里面的任意字符
-### [^a-z] 匹配除a到z之外的所有字符
-### + 匹配重复一次或者多次
-### * 匹配重复0次或者多次字符
-### ? 匹配重复1次或者是0次
-### () 分组匹配
-### | 或者
-### ?: 分组匹配不捕获
-捕获方法： RegExp.$1
-### ?=元 正向肯定预查  表示肯定是元，但不匹配
-### ?!=元 正向否定预查  表示肯定不是元，不匹配
-### ?<=￥ 反向肯定预查  表示肯定是￥，但不匹配
-### ?!=元 反向否定预查  表示肯定不是￥，不匹配
-### {4,8}最少4位 最多8位匹配
-### 正则实例对象的方法
-#### test()
-	返回一个布尔值，表示当前模式是否能匹配参数字符串
-#### exec()
-	用来返回匹配的结果。如果发现匹配，就返回一个数组，数组中的成员都是匹配的子字符串，否则返回null
-### 字符串方法 
-#### match()
-	对字符串进行正则匹配，返回匹配的结果
-#### search()
-	返回第一个满足条件的匹配结果在整个字符串中的位置。如果没有任何匹配，则返回-1
-#### replace()
-	可以替换匹配的值。它接受两个参数，第一个是正则表达式，表示搜索模式，第二个是替换的内容
 
 
-​		
-## Date
-- 日期的对象，在JS中通过Date对象来表示一个时间
-- 创建对象
-	- 创建一个当前的时间对象
-		var d = new Date();
-	- 创建一个指定的时间对象
-		var d = new Date("月/日/年 时:分:秒");
-	
-- 方法：
-	getDate()
-		- 当前日期对象是几日（1-31）
-		
-	getDay() 
-		- 返回当前日期对象时周几（0-6）
-			- 0 周日
-			- 1 周一 。。。
-			
-	getMonth()
-		- 返回当前日期对象的月份（0-11）
-		- 0 一月 1 二月 。。。
-	getFullYear() 从 Date 对象以四位数字返回年份。 
-	
-	getHours() 返回 Date 对象的小时 (0 ~ 23)。 
-	getMinutes() 返回 Date 对象的分钟 (0 ~ 59)。 
-	getSeconds() 返回 Date 对象的秒数 (0 ~ 59)。 
-	getMilliseconds() 返回 Date 对象的毫秒(0 ~ 999)。 
-	
-	getTime()
-		- 返回当前日期对象的时间戳
-		- 时间戳，指的是从1970年月1日 0时0分0秒，到现在时间的毫秒数
-			计算机底层保存时间都是以时间戳的形式保存的。
-			
-	Date.now()
-		- 可以获取当前代码执行时的时间戳
 
-
-## Math			
-- Math属于一个工具类，它不需要我们创建对象，它里边封装了属性运算相关的常量和方法
-	我们可以直接使用它来进行数学运算相关的操作
-- 方法：
-	Math.PI  
-		- 常量，圆周率  
-	Math.abs()  
-		- 绝对值运算  
-	Math.ceil()  
-		- 向上取整  
-	Math.floor()  
-		- 向下取整  
-	Math.round()  
-		- 四舍五入取整  
-	Math.random()	  
-		- 生成一个0-1之间的随机数  
-		- 生成一个x-y之间的随机数 
-			Math.round(Math.random()*(y-x)+x);   
-	Math.pow(x,y)   
-		- 求x的y次幂  
-	Math.sqrt()   
-		- 对一个数进行开方   
-	Math.max()  
-		- 求多个数中最大值   
-	Math.min()  
-		- 求多个数中的最小值  
-			
-
-
-​	
 
 
 ## BOM
@@ -1217,7 +995,7 @@ $ 匹配字符串结束的位置
 – 是否创建新的历史记录  
 
 
-### 超时调用
+### 定时器
 - 超时调用：  
 – setTimeout()  
 – 超过一定时间以后执行指定函数  
@@ -1228,7 +1006,7 @@ $ 匹配字符串结束的位置
 – clearTimeout()  
 - 超时调用都是在全局作用域中执行的。  
 
-### 间歇调用  
+### 周期性定时器  
 - 间歇调用：  
 – setInterval()  
 – 每隔一段时间执行指定代码  
@@ -1560,16 +1338,19 @@ document.createTextNode()
 	
 	scrollHeight
 	scrollWidth
+	
 		- 获取元素滚动区域的高度和宽度
 	
 	scrollTop
 	scrollLeft
 		- 获取元素垂直和水平滚动条滚动的距离
 		
+	
 	判断滚动条是否滚动到底
 		- 垂直滚动条
 			scrollHeight - scrollTop = clientHeight
 			
+	
 		- 水平滚动	
 			scrollWidth - scrollLeft = clientWidth
 	
@@ -1680,3 +1461,218 @@ document.createTextNode()
         		相对于页面的x轴和y轴的距离，如果有滚动条，包含整个页面
         	5.4 offsetX/Y
         		相对于事件源x轴和y轴的距离
+
+
+
+## 深入理解函数
+
+- 函数概述
+  - [函数的声明](https://book.apeland.cn/details/365/#函数的声明)
+  - [函数返回值](https://book.apeland.cn/details/365/#函数返回值)
+  - 函数调用
+    - [【1】函数调用模式](https://book.apeland.cn/details/365/#【1】函数调用模式)
+    - [【2】方法调用模式](https://book.apeland.cn/details/365/#【2】方法调用模式)
+    - [【3】构造函数调用模式](https://book.apeland.cn/details/365/#【3】构造函数调用模式)
+    - [【4】间接调用模式](https://book.apeland.cn/details/365/#【4】间接调用模式)
+- 函数参数
+  - arguments
+    - [同名形参](https://book.apeland.cn/details/365/#同名形参)
+    - [参数个数](https://book.apeland.cn/details/365/#参数个数)
+  - [函数重载](https://book.apeland.cn/details/365/#函数重载)
+  - [参数传递](https://book.apeland.cn/details/365/#参数传递)
+- 函数属性和方法
+  - 属性
+    - [length属性](https://book.apeland.cn/details/365/#length属性)
+    - [name属性](https://book.apeland.cn/details/365/#name属性)
+    - [prototype属性](https://book.apeland.cn/details/365/#prototype属性)
+  - 方法
+    - [apply()和call()](https://book.apeland.cn/details/365/#apply()和call())
+    - [应用](https://book.apeland.cn/details/365/#应用)
+    - [bind()](https://book.apeland.cn/details/365/#bind())
+
+
+
+## 函数间接方法和其他属性
+
+- call()
+- apply()
+  - 这两个方法都是函数对象的方法需要通过函数对象来调用
+  - 通过两个方法可以直接调用函数，并且可以通过第一个实参来指定函数中this
+  - 不同的是call是直接传递函数的实参而apply需要将实参封装到一个数组中传递
+- arguments
+  - arguments和this类似，都是函数中的隐含的参数
+  - arguments是一个类数组元素，它用来封装函数执行过程中的实参
+    所以即使不定义形参，也可以通过arguments来使用实参
+  - arguments中有一个属性callee表示当前执行的函数对象
+- this
+  - this是函数的上下文对象，根据函数的调用方式不同会执向不同的对象
+    1.以函数的形式调用时，this是window    
+    2.以方法的形式调用时，this是调用方法的对象    
+    3.以构造函数的形式调用时，this是新建的那个对象   
+    4.使用call和apply调用时，this是指定的那个对象   
+    5.在全局作用域中this代表window   
+
+
+
+## 深入理解作用域
+
+- 内部原理
+  - [编译(了解)](https://book.apeland.cn/details/402/#编译(了解))
+  - [执行(重要)](https://book.apeland.cn/details/402/#执行(重要))
+  - [查询](https://book.apeland.cn/details/402/#查询)
+  - [嵌套(重要)](https://book.apeland.cn/details/402/#嵌套(重要))
+  - [异常](https://book.apeland.cn/details/402/#异常)
+  - [原理](https://book.apeland.cn/details/402/#原理)
+- 词法作用域和动态作用域
+  - [词法作用域](https://book.apeland.cn/details/402/#词法作用域)
+  - [动态作用域](https://book.apeland.cn/details/402/#动态作用域)
+- 声明提升(重要)
+  - [变量声明提升](https://book.apeland.cn/details/402/#变量声明提升)
+  - [函数声明提升(重要)](https://book.apeland.cn/details/402/#函数声明提升(重要))
+  - [函数覆盖](https://book.apeland.cn/details/402/#函数覆盖)
+- 理解什么是作用域和执行上下文环境
+  - 概念
+    - [作用域](https://book.apeland.cn/details/402/#作用域)
+    - [作用域链和自由变量](https://book.apeland.cn/details/402/#作用域链和自由变量)
+    - [执行环境](https://book.apeland.cn/details/402/#执行环境)
+    - [执行流](https://book.apeland.cn/details/402/#执行流)
+    - [执行环境栈](https://book.apeland.cn/details/402/#执行环境栈)
+    - [整个执行流程](https://book.apeland.cn/details/402/#整个执行流程)
+
+
+
+
+
+## 深入理解闭包
+
+- 闭包
+  - [如何站好队](https://book.apeland.cn/details/439/#如何站好队)
+  - [闭包的用途](https://book.apeland.cn/details/439/#闭包的用途)
+  - [使用闭包的注意点](https://book.apeland.cn/details/439/#使用闭包的注意点)
+  - [总结](https://book.apeland.cn/details/439/#总结)
+- 立即执行函数
+  - 实现
+    - [常用的两种写法](https://book.apeland.cn/details/439/#常用的两种写法)
+    - [注意](https://book.apeland.cn/details/439/#注意)
+    - [其它写法](https://book.apeland.cn/details/439/#其它写法)
+  - [用途](https://book.apeland.cn/details/439/#用途)
+  - [注意事项](https://book.apeland.cn/details/439/#注意事项)
+- 对循环和闭包的错误理解
+  - [容易犯错的一件事](https://book.apeland.cn/details/439/#容易犯错的一件事)
+  - IIFE解决容易犯错的问题
+    - [块作用域](https://book.apeland.cn/details/439/#块作用域)
+- [名言](https://book.apeland.cn/details/439/#名言)
+- 闭包的的10种形式
+  - [返回值](https://book.apeland.cn/details/439/#返回值)
+  - [函数赋值](https://book.apeland.cn/details/439/#函数赋值)
+  - [函数参数](https://book.apeland.cn/details/439/#函数参数)
+  - [IIFE](https://book.apeland.cn/details/439/#IIFE)
+  - [循环赋值](https://book.apeland.cn/details/439/#循环赋值)
+  - [getter和setter](https://book.apeland.cn/details/439/#getter和setter)
+  - [迭代器](https://book.apeland.cn/details/439/#迭代器)
+  - [区分首次](https://book.apeland.cn/details/439/#区分首次)
+  - [缓存机制](https://book.apeland.cn/details/439/#缓存机制)
+  - [img对象](https://book.apeland.cn/details/439/#img对象)
+
+
+
+## this指向深入
+
+[this绑定规则](https://book.apeland.cn/details/440/#this绑定规则)
+
+- [默认绑定](https://book.apeland.cn/details/440/#默认绑定)
+- [隐式绑定](https://book.apeland.cn/details/440/#隐式绑定)
+- [隐式丢失](https://book.apeland.cn/details/440/#隐式丢失)
+- [显示绑定](https://book.apeland.cn/details/440/#显示绑定)
+- [new绑定](https://book.apeland.cn/details/440/#new绑定)
+- [严格模式](https://book.apeland.cn/details/440/#严格模式)
+
+
+
+## 面向对象编程
+
+- [对象是什么](https://book.apeland.cn/details/441/#对象是什么)
+- [构造函数](https://book.apeland.cn/details/441/#构造函数)
+- [new命令](https://book.apeland.cn/details/441/#new命令)
+- [constructor](https://book.apeland.cn/details/441/#constructor)
+- 原型对象
+  - [prototype属性的作用](https://book.apeland.cn/details/441/#prototype属性的作用)
+  - [原型链](https://book.apeland.cn/details/441/#原型链)
+  - [constructor](https://book.apeland.cn/details/441/#constructor)
+  - [总结](https://book.apeland.cn/details/441/#总结)
+- 创建对象的5种模式
+  - [对象字面量](https://book.apeland.cn/details/441/#对象字面量)
+  - [工厂模式](https://book.apeland.cn/details/441/#工厂模式)
+  - 构造函数模式
+    - [构造函数拓展模式](https://book.apeland.cn/details/441/#构造函数拓展模式)
+    - [寄生构造函数模式](https://book.apeland.cn/details/441/#寄生构造函数模式)
+    - [稳妥构造函数模式](https://book.apeland.cn/details/441/#稳妥构造函数模式)
+  - 原型模式
+    - [更简单的原型模式](https://book.apeland.cn/details/441/#更简单的原型模式)
+  - 组合模式
+    - [动态原型模式](https://book.apeland.cn/details/441/#动态原型模式)
+  - [总结](https://book.apeland.cn/details/441/#总结)
+- 基于面向对象的选项卡案例
+  - [面向过程选项卡实现](https://book.apeland.cn/details/441/#面向过程选项卡实现)
+- 实现继承的5种方式
+  - [原型链继承](https://book.apeland.cn/details/441/#原型链继承)
+  - [借用构造函数继承](https://book.apeland.cn/details/441/#借用构造函数继承)
+  - [组合继承（重要）](https://book.apeland.cn/details/441/#组合继承（重要）)
+  - [寄生组合式继承](https://book.apeland.cn/details/441/#寄生组合式继承)
+  - [多重继承](https://book.apeland.cn/details/441/#多重继承)
+- Object对象中的相关方法
+  - Object的静态方法
+    - [Object.keys()](https://book.apeland.cn/details/441/#Object.keys())
+    - [Object.getOwnPropertyNames()](https://book.apeland.cn/details/441/#Object.getOwnPropertyNames())
+    - [Object.getPrototypeOf()](https://book.apeland.cn/details/441/#Object.getPrototypeOf())
+    - [Object.setPrototypeOf()](https://book.apeland.cn/details/441/#Object.setPrototypeOf())
+    - [Object.create()](https://book.apeland.cn/details/441/#Object.create())
+  - [其它方法](https://book.apeland.cn/details/441/#其它方法)
+  - Object的实例方法
+    - [Object.prototype.valueOf()](https://book.apeland.cn/details/441/#Object.prototype.valueOf())
+    - [Object.prototype.toString()](https://book.apeland.cn/details/441/#Object.prototype.toString())
+    - [Object.prototype.isPrototypeOf()](https://book.apeland.cn/details/441/#Object.prototype.isPrototypeOf())
+    - [Object.prototype.\_\_proto\_\_](https://book.apeland.cn/details/441/#Object.prototype.__proto__)
+    - [Object.prototype.hasOwnProperty](https://book.apeland.cn/details/441/#Object.prototype.hasOwnProperty)
+  - 属性描述对象
+    - [Object.getOwnPropertyDescriptor()](https://book.apeland.cn/details/441/#Object.getOwnPropertyDescriptor())
+    - [Object.defineProperty()](https://book.apeland.cn/details/441/#Object.defineProperty())
+    - [Object.defineProperties()](https://book.apeland.cn/details/441/#Object.defineProperties())
+    - [Object.prototype.propertyIsEnumerable()](https://book.apeland.cn/details/441/#Object.prototype.propertyIsEnumerable())
+  - 元属性
+    - [value](https://book.apeland.cn/details/441/#value)
+    - [writable](https://book.apeland.cn/details/441/#writable)
+    - [enumerable](https://book.apeland.cn/details/441/#enumerable)
+    - [configurable](https://book.apeland.cn/details/441/#configurable)
+  - [存取器](https://book.apeland.cn/details/441/#存取器)
+  - 深浅拷贝
+    - [基本类型的拷贝](https://book.apeland.cn/details/441/#基本类型的拷贝)
+    - 引用类型的拷贝
+      - [浅拷贝](https://book.apeland.cn/details/441/#浅拷贝)
+      - [深拷贝](https://book.apeland.cn/details/441/#深拷贝)
+- 模块化
+  - [1.基本的实现方法](https://book.apeland.cn/details/441/#1.基本的实现方法)
+  - [2.封装私有变量:构造函数的写法](https://book.apeland.cn/details/441/#2.封装私有变量:构造函数的写法)
+  - [3.封装私有变量：立即执行函数的写法](https://book.apeland.cn/details/441/#3.封装私有变量：立即执行函数的写法)
+  - [4.模块放大模式](https://book.apeland.cn/details/441/#4.模块放大模式)
+  - [5.输入全局变量](https://book.apeland.cn/details/441/#5.输入全局变量)
+
+
+
+关于JS面向对象编程：
+
+面向过程 =>   
+js基础到网页上的一些行为，都是面向过程，根据逻辑进行实现的  
+面向对象编程 =>    
+是对 面向过程的二次改造，实现可拓展性  
+面向模块开发 =>  
+
+- CommonJs  
+
+- ES6  
+- AMD  
+- CMD 规范   
+
+面向组件开发 =>  
+
+vue react 框架

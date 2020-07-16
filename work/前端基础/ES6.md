@@ -533,7 +533,7 @@ es6 解构赋值
       let s1 = Symbol('s1');
       console.log(s1);
       let obj = {
-          [s1]:'小马哥'
+          [s1]:'ma'
       };
       console.log(obj[s1]);
   //Symbol变量无法被遍历，且不易被获取
@@ -796,7 +796,7 @@ es6 解构赋值
              }
          }   
          const obj = {
-             name:'小马哥',
+             name:'ma',
              age:18
          }
          obj[Symbol.iterator] = objectEntries;
@@ -913,33 +913,33 @@ es6 解构赋值
   
 - 示例1：
 	
+	​	
 	
-	let pro = new Promise(function(resolved,rejected) {
-	        //执行异步操作
-	        let res = {
-	            code: 201,
-	            data:{
-	                name:'小马哥'
-	            },
-	            error:'失败了'
-	        }
-	        setTimeout(() => {
-	            if(res.code === 200){
-	                resolved(res.data);
-	            }else{
-	                rejected(res.error);
-	            }
-	        }, 1000);
-	    })
-	    console.log(pro);
-	    pro.then((val)=>{
-	        console.log(val);
-	        
-	},(err)=>{
-	    console.log(err);
-	    
-	});
-	
+			let pro = new Promise(function(resolved,rejected) {
+					//执行异步操作
+					let res = {
+						code: 201,
+						data:{
+							name:'ma'
+						},
+						error:'失败了'
+					}
+					setTimeout(() => {
+						if(res.code === 200){
+							resolved(res.data);
+						}else{
+							rejected(res.error);
+						}
+					}, 1000);
+				})
+				console.log(pro);
+				pro.then((val)=>{
+					console.log(val);
+					
+			},(err)=>{
+				console.log(err);
+				
+			});
 	
 - then 回调的2个参数，成功(resolved)或失败 (rejected)
   - 示例2：
@@ -960,7 +960,142 @@ es6 解构赋值
 
 - 使用promise封装ajax 
 
-          // https://free-api.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976
+         // https://free-api.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976
+         const getJSON = function (url) {
+             return new Promise((resolve, reject) => {
+                 const xhr = new XMLHttpRequest();
+                 xhr.open('GET', url);
+                 xhr.onreadystatechange = handler;
+                 xhr.responseType = 'json';
+                 xhr.setRequestHeader('Accept', 'application/json');
+                 // 发送
+                 xhr.send();
+         
+                 function handler() {
+         
+                     if (this.readyState === 4) {
+                         if (this.status === 200) {
+                             resolve(this.response.HeWeather6);
+                         } else {
+                             reject(new Error(this.statusText));
+                         }
+                     }
+         
+                 }
+             })
+         }
+         
+                 getJSON('https://free-ap.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976')
+                     .then(data => {
+                         console.log(data);
+                     }).catch(err => {
+                         console.log(err);
+                     })
+
+
+     ​                
+                    catch 与then相同
+                catch(err=>{
+         
+                 })
+         
+                then(null,err=>{
+         
+                })
+
+- `resolve()`  `reject()` `all()` `race()`  `done()` `finally()`
+
+- `resolve()`  `reject()`能将现有的任何对象转换成promise对象
+
+          let p = Promise.resolve('foo');
+          let p = new Promise(resolve=>resolve('foo'));
+           p.then((data)=>{
+               console.log(data);
+               
+           }) 
+
+- `all()` 
+
+- 应用：一些游戏类的素材比较多，等待图片、flash、静态资源文件 都加载完成 才进行页面的初始化
+
+          let promise1 = new Promise((resolve, reject) => {});
+          let promise2 = new Promise((resolve, reject) => {});
+          let promise3 = new Promise((resolve, reject) => {});
+          
+          let p4 = Promise.all([promise1, promise2, promise3])
+          
+          p4.then(()=>{
+              // 三个都成功  才成功
+          }).catch(err=>{
+              // 如果有一个失败 则失败
+          }) 
+
+- `race()` 
+
+- 某个异步请求设置超时时间，并且在超时后执行相应的操作
+
+          // 1 请求图片资源
+          function requestImg(imgSrc) {
+              return new Promise((resolve, reject) => {
+                  const img = new Image();
+                  img.onload = function () {
+                      resolve(img);
+                  }
+                  img.src = imgSrc;
+              });
+          }
+          
+          function timeout() {
+              return new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                      reject(new Error('图片请求超时'));
+                  }, 3000);
+              })
+          }
+          Promise.race([requestImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566364222518&di=b3c6d411bb23f17d1798fc6be3325ad5&imgtype=0&src=http%3A%2F%2Fpic.k73.com%2Fup%2Fsoft%2F2016%2F0102%2F092635_44907394.jpg'),timeout()]).then(data=>{
+              console.log(data);
+              document.body.appendChild(data);
+              
+          }).catch(err=>{
+              console.log(err);
+              
+          });
+
+-  `done()` `finally()`   方法在.catch 只后总会执行
+
+## async的用法
+
+-   作用：使得异步操作更加方便
+
+- 基本操作 async它会返回一个Promise对象  then catch
+
+- async是Generator的一个语法糖
+
+          async function f() {
+              // return await 'hello async';
+              let s = await 'hello world';
+              let data = await s.split('');
+              return data;
+          }
+           // 如果async函数中有多个await 那么then函数会等待所有的await指令 运行完的结果 才去执行
+              f().then(v => {
+                  console.log(v)
+              }).catch(e => console.log(e));
+          
+              async function f2() {
+                  // throw new Error('出错了');
+                  try {
+                      await Promise.reject('出错了');
+                  } catch (error) {
+          
+                  }
+                  return await Promise.resolve('hello');
+              }
+              f2().then(v => console.log(v)).catch(e => console.log(e));
+
+- 使用场景：
+
+          // 需求： 想获取和风天气 现在now的数据
           const getJSON = function (url) {
               return new Promise((resolve, reject) => {
                   const xhr = new XMLHttpRequest();
@@ -970,17 +1105,176 @@ es6 解构赋值
                   xhr.setRequestHeader('Accept', 'application/json');
                   // 发送
                   xhr.send();
-      
+          
                   function handler() {
-      
+          
                       if (this.readyState === 4) {
                           if (this.status === 200) {
-                              resolve(this.response.HeWeather6);
+                              resolve(this.response);
                           } else {
                               reject(new Error(this.statusText));
                           }
                       }
-      
+          
                   }
               })
           }
+          
+          async function getNowWeather(url) {
+              // 发送ajax 获取实况天气
+              let res = await getJSON(url);
+              console.log(res);
+              // 获取HeWeather6的数据   获取未来3~7天的天气状况
+              let arr = await res.HeWeather6;
+              return arr[0].now;
+          }
+          getNowWeather(
+                  'https://free-api.heweather.net/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976')
+              .then(now => {
+                  console.log(now);
+              })
+
+## Generator  Promise  async
+
+1. 解决回调地域 
+2. 使得异步操作显得更加方便
+
+
+
+## class类的用法
+
+- ES5 造类的方法
+
+  
+          function Person(name,age) {
+              this.name = name;
+              this.age = age;
+          }
+          Person.prototype.sayName = function() {
+              return this.name;
+          }
+          let p1 = new Person('ma',28);
+          console.log(p1);
+
+- ES6 class的使用
+
+          class Person {
+              // 实例化的时候会立即被调用
+              constructor(name, age) {
+                  this.name = name;
+                  this.age = age;
+              }
+              
+            	sayName() {
+            	    return this.name;
+            	}
+            	sayAge() {
+            	    return this.age;
+            	}
+          
+          }
+          let p1 = new Person('ma', 28);
+          console.log(p1);
+
+- ES6  通过Object.assign()方法一次性向类中添加多个方法
+
+  ​	
+
+          class Person {
+              // 实例化的时候会立即被调用
+              constructor(name, age) {
+                  this.name = name;
+                  this.age = age;
+              }
+      
+          }
+          // 通过Object.assign()方法一次性向类中添加多个方法
+          Object.assign(Person.prototype, {
+              sayName() {
+                  return this.name
+              },
+              sayAge() {
+                  return this.age
+              }
+          })
+          let p1 = new Person('ma', 28);
+          console.log(p1);
+
+- class 继承 (extends)
+
+          // 使用关键字 extends
+          class Animal{
+              constructor(name,age) {
+                  this.name = name;
+                  this.age = age;
+              }
+              sayName(){
+                  return this.name;
+              }
+              sayAge(){
+                  return this.age;
+              }
+          }
+          
+          class Dog extends Animal{
+              constructor(name,age,color) {
+                  super(name,age);
+                  // Animal.call(this,name,age);
+                  this.color = color;
+              }
+              // 子类自己的方法
+              sayColor(){
+                  return `${this.name}是${this.age}岁了,它的颜色是${this.color}`
+              }
+              // 重写父类的方法
+              sayName(){
+                  return this.name + super.sayAge() + this.color;
+              }
+              
+          }
+          let d1 = new Dog('小黄',28,'red');
+          console.log(d1.sayColor());
+          console.log(d1.sayName());
+
+- `super(name,age)` 相当于 `Animal.call(this,name,age);`
+
+
+- ## ES6的模块化实现
+
+- 先粗略了解模块化的一些规范
+
+- 一共有4中模块化加载，以后编辑
+
+  1. CommonJs
+  2. ES6
+  3. AMD
+  4. CMD
+
+- ES6 实现模块化实现
+
+
+  - es6模块功能主要有两个命令构成：`export`和`import`
+  -  `export`用于规定模块的对外接口
+  -  `import`用于输入其它模块提供的功能
+
+- 一个模块就是独立的文件
+
+- 具体应用
+
+  - 首先需要一个独立模块，通过`export` 向外暴露属性或方法
+
+    - `export const name = '张三';`
+
+  - 另一个脚本文件
+
+    - 在script 设置属性为 type=`module`
+
+          <script type='module'>
+          import {name} from './modules/index.js'
+          console.log(name);
+          </script>
+
+
+
+
+
