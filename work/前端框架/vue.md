@@ -206,6 +206,16 @@ filters**局部过滤器**
 
 
 
+## 阶段性练习
+
+[音乐播放器](http://site.dearmsdan.com/work/前端框架/vue/music计算属性.html)
+
+
+
+
+
+
+
 
 
 
