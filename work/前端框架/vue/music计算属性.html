@@ -4,6 +4,9 @@
 		<meta charset="utf-8">
 		<title>音乐播放器</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	
+	
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<style>
 		*{
@@ -25,6 +28,7 @@
 		li{
 			width: 500px;
 			padding: 10px;
+			user-select: none;
 		}
 		.active{
 			background-color: aliceblue;
@@ -48,8 +52,6 @@
 			<button @click="next" type="button">下一首</button>
 			
 		</div>
-		
-		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
 		
 		<script>
 			
