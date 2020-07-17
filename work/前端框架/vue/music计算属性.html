@@ -3,11 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<title>音乐播放器</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	</head>
 	<style>
 		*{
 			padding: 0px;
 			margin: 0px;
+		}
+		html{
+			font-size: 20px;
+		}
+		#app{
+			font-size: 1rem;
+		}
+		button{
+			    font-size: 1rem;
 		}
 		ul{
 			
@@ -26,9 +36,9 @@
 	</style>
 	<body>
 		<div id="app">
-			<audio ref="audio" @ended="audioEnded" :src="songSrc" autoplay="autoplay" controls="controls"></audio>
+			<audio ref="audio" @ended="audioEnded" :src="getcurrentSrc" autoplay="autoplay" controls="controls"></audio>
 			<ul> 
-				<li @click="onclick(music.songSrc,index)" :class="{active:currenIndex === index}" v-for="(music,index) in musicData" v-bind:key="music.id">
+				<li @click="onclick(index)" :class="{active:currenIndex === index}" v-for="(music,index) in musicData" v-bind:key="music.id">
 					<h3>{{music.id}}-歌名：{{music.name}}</h3>
 					<span> {{music.author}} </span>
 				</li>
@@ -78,10 +88,14 @@ const musicData = [{
 					currenIndex: 0, 
 					songSrc: musicData[0].songSrc
 				},
+				computed:{
+					getcurrentSrc:function(){
+						return this.musicData[this.currenIndex].songSrc;
+					}
+				},
 				methods: {
-					onclick: function(src,index){
+					onclick: function(index){
 						this.currenIndex = index;
-						this.songSrc = src;
 					},
 					Ended: function(isEnd){
 						const length = this.musicData.length-1;
@@ -97,7 +111,6 @@ const musicData = [{
 							}
 							this.currenIndex--;
 						}
-							this.songSrc = this.musicData[this.currenIndex].songSrc;
 					},
 					audioEnded:function(){
 						this.Ended(true);

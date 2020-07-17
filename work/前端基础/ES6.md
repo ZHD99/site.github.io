@@ -718,7 +718,23 @@ es6 解构赋值
 
 通过`includes()` 替代了indexof() 判断数组是否包含这个元素
 
+**ES5和ES6如何取数组的最大值：**
 
+// ES5 的写法   
+
+Math.max.apply(null, [14, 3, 77, 30]);   
+
+// ES6 的写法  
+
+Math.max(...[14, 3, 77, 30]);
+
+// reduce
+
+[14,3,77,30].reduce((accumulator, currentValue)=>{
+
+​    return accumulator = accumulator > currentValue ? accumulator : currentValue
+
+});
 
 
 

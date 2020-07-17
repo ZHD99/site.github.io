@@ -209,6 +209,17 @@ filters**局部过滤器**
 
 
 
+
+## vue如何获取并操作DOM元素
+
+Vue.js虽然说是数据驱动页面的，不建议我们操作dom,但是有时候我们也要获取dom对象进行一些操作。vue的不同版本获取dom对象的方法不一样  
+
+- Vue.js  1.0版本中，通过v-el绑定，然后通过this.els.XXX来获取
+- Vue.js  2.0版本中。我们通过给元素绑定ref=“XXX”，然后通过this.$refs.XXX或者this.refs['XXX']来获取
+
+
+
+
 ### Node (后端)中的MVC与前端中的MVVM之间的区别
 
 + MVC 是后端的分层开发概念;
