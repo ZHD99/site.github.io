@@ -463,6 +463,18 @@ new Vue({})
 
 
 
+## vue : 无法加载文件 C:\Users\1111111\AppData\Roaming\npm\vue.ps1,因为在此系统禁止运行脚本
+
+
+
+- 用管理员身份打开Windows PowerShell
+- 输入set-ExecutionPolicy RemoteSigned 
+- 4.选择Y 或者A
+
+
+
+
+
 ### Node (后端)中的MVC与前端中的MVVM之间的区别
 
 + MVC 是后端的分层开发概念;
