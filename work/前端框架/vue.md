@@ -2,6 +2,8 @@
 
 vue是一套构建用户界面渐进式框架
 
+https://cn.vuejs.org/v2/guide/installation.html#CDN
+
 ## 适用人群
 
 有一定的HTML/CSS/JavaScript+ES6+基础开发人员
@@ -459,9 +461,7 @@ new Vue({})
 - 检查其版本是否正确
   - `vue --version`
 
-
-
-
+# 常见问题！
 
 ## vue : 无法加载文件 C:\Users\1111111\AppData\Roaming\npm\vue.ps1,因为在此系统禁止运行脚本
 
