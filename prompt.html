@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>sacss - Seablue</title>
+  
+  <link rel="stylesheet" href="dist/css/seablueUI.min.css">
+  
+  
+  <style>
+    
+/* tabs */
+.nav-tabs {position: relative;}
+.nav-tabs .nav-more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 42px;
+  line-height: 42px;
+  color: #666;
+}
+#tabs {border-bottom: 1px solid #eee;}
+#tabs li {
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 2px solid transparent;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -1px;
+  color: #666;
+}
+
+#tabs .active {
+  border-bottom-color: #f00;
+  color: #222;
+}
+
+.tab-container .content { display: none;    margin-top: 20px;}
+  .main {
+    padding: 30px 50px;
+    width: 960px;
+    margin: 0 auto;}
+  .main .logo {
+    color: #333;
+    text-align: left;
+    margin-bottom: 30px;
+    line-height: 1;
+    height: 110px;
+    margin-top: -50px;
+    overflow: hidden;
+    *zoom: 1;}
+  .main .logo a {
+    font-size: 160px;
+    color: #333;
+  }
+  .helps {
+    margin-top: 40px;
+  }
+  .helps pre {
+    padding: 20px;
+    margin: 10px 0;
+    border: solid 1px #e7e1cd;
+    background-color: #fffdef;
+    overflow: auto;
+  }
+  .icon_lists {
+    width: 100% !important;
+    overflow: hidden;
+    *zoom: 1;
+  }
+  .icon_lists li {display: inline-block;
+    width: 100px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    text-align: center;
+    list-style: none !important;
+    cursor: default;
+  }
+  .icon_lists li .code-name {
+    line-height: 1.2;
+  }
+  .icon_lists .icon {
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    font-size: 42px;
+    margin: 10px auto;
+    color: #333;
+    -webkit-transition: font-size 0.25s linear, width 0.25s linear;
+    -moz-transition: font-size 0.25s linear, width 0.25s linear;
+    transition: font-size 0.25s linear, width 0.25s linear;}
+    .icon_lists .icon:hover {
+    font-size: 100px;
+  }
+    .main .logo {
+      margin-top: 0;
+      height: auto;
+    }
+    .main .logo a {
+      display: flex;
+      align-items: center;
+    }
+    .main .logo .sub-title {
+      margin-left: 0.5em;
+      font-size: 22px;
+      color: #fff;
+      background: linear-gradient(-45deg, #3967FF, #B500FE);
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="Seablue">
+  <div class="main">
+    <div class="nav-tabs">
+      <ul id="tabs" class="dib-box">
+       <li class="dib active"><span>行内提示 <!-- (lineTips) --></span></li>
+       <li class="dib"><span>全屏提示 <!-- (fullTips) --></span></li>
+      </ul>
+
+    </div>
+    <div class="tab-container">
+      <div class="content tips">
+        <p class="">无测试</p>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <div class="prompt">默认点击提示</div>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <div class="tooltip">点击提示</div>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <div class="prompthover1">悬浮提示</div>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p><p>&nbsp;</p>
+      </div>
+      <div class="content full-tips">
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <div class="prompt3">全屏提示</div>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <div class="promptfull">全屏提示</div>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <div class="promptimg">
+
+          
+  <table>
+    <caption>全屏图片</caption>
+    <thead>
+      <tr>
+        <th colspan="3" class="text-c">logo锦集</th>
+      </tr> 
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="dist/sass/img/z.png" alt=""></td>
+        <td><img src="dist/sass/img/z.png" alt=""></td>
+        <td><img src="dist/sass/img/z.png" alt=""></td>
+      </tr>
+      <tr>
+        <td><img src="dist/sass/img/m-1.png" alt=""></td>
+        <td><img src="dist/sass/img/m.png" alt=""></td>
+        <td><img src="dist/sass/img/m-2.png" alt=""></td>
+      </tr>
+      <tr>
+        <td><img src="dist/sass/img/l.png" alt=""></td>
+        <td><img src="dist/sass/img/l.png" alt=""></td>
+        <td><img src="dist/sass/img/l.png" alt=""></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+        </div>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <div id="promptfull">
+      <div class="promptfull-font"><span class="icon Seablue-icon">&#xe607;</span>这是一段警告弹框</div>
+  </div> -->
+
+</body>
+</html>
+
+<script src="dist/SeablueUI.js"></script>
+<script>
+  console.log(Seablue);
+  var $ = Seablue.$;
+
+  
+$(document).ready(function () {
+      $('.tab-container .content:first').show();
+
+    $('#tabs li').click(function (e) {
+      var tabContent = $('.tab-container .content')
+      var index = $(this).index()
+
+      if ($(this).hasClass('active')) {
+        return
+      } else {
+        $('#tabs li').removeClass('active')
+        $(this).addClass('active')
+
+        tabContent.hide().eq(index).fadeIn()
+      }
+    })
+  });
+
+</script>
+
+<script>
+// 默认 获取el:prompthover 类型: 点击提示 提示时间: 400 
+Seablue.prompt();
+
+// 点击提示
+Seablue.prompt({
+  el :'.tooltip'   // 获取 元素
+  ,color: '#89d8d3' // 设置 颜色
+  ,bg: '#e5f4ff' // 设置背景
+  ,tpye: 1  // 设置类型 类型为1 点击提示
+  ,lineTips: '点击提示'  // 设置提示内容
+  ,linetime: 400  // 设置提示时间
+});
+
+// 悬浮提示
+Seablue.prompt({
+  el :'.prompthover1' // 获取 元素
+  ,color: '#e5f4ff' // 设置 颜色
+  ,bg: '#3287b2' // 设置背景
+  ,type: 2  // 设置类型 类型为2 悬浮提示
+  ,lineTips: '提示三'  // 设置提示内容
+});
+
+// 全屏悬浮
+Seablue.prompt({
+  el :'.prompt3' // 获取 元素
+  ,type: 3  // 设置类型 类型为3 全屏悬浮
+});
+    
+// 全屏悬浮
+Seablue.prompt({
+  el :'.promptfull' // 获取 元素
+  ,color: '#aaa' // 设置 颜色
+  ,bg: "#fff"  // 设置 背景
+  ,type: 3  // 设置类型 类型为3 全屏悬浮
+  ,lineTips: '这是有个全屏显示信息'  // 设置提示内容
+  ,linetime: 100  // 设置提示时间
+  ,icon: "&#xe68a"   //  仅使用 Unicode字体编码
+});
+
+// 全屏悬浮
+Seablue.prompt({
+  type: 4  // 设置类型 类型为4  开启全屏图片展示图
+});
+    
+    
+    
+</script>
